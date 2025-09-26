@@ -1,0 +1,161 @@
+@interface SimulatorApplication : SBApplication
+// An application's top level scripting object.
+@end
+@property (copy) NSDictionary *properties; // All of the object's properties.
+@interface SimulatorItem : SBObject <SimulatorGenericMethods>
+// A scriptable object.
+*/
+/*
+* Standard Suite
+@end
+- (void) saveAs:(NSString *)as in:(NSURL *)in_; // Save an object.
+- (void) moveTo:(SBObject *)to; // Move object(s) to a new location.
+- (BOOL) exists; // Verify if an object exists.
+Copy object(s) and put the copies at a new location.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties; //
+- (void) delete; // Delete an object.
+object.
+- (void) closeSaving:(SimulatorSavo)saving savingIn:(NSURL *)savingIn; // Close an
+@protocol SimulatorGenericMethods
+typedef enum SimulatorEnum SimulatorEnum;
+};
+SimulatorEnumDetailed = 'lwdt' /* print a detailed report of PostScript errors */
+SimulatorEnumStandard = 'lwst' /* Standard PostScript error handling */,
+enum SimulatorEnum {
+typedef enum SimulatorSavo SimulatorSavo;
+};
+SimulatorSavoYes = 'yes ' /* Save the file. */
+SimulatorSavoNo = 'no ' /* Do not save the file. */,
+SimulatorSavoAsk = 'ask ' /* Ask the user whether or not to save the file. */,
+enum SimulatorSavo {
+SimulatorText, SimulatorAttachment, SimulatorWord, SimulatorPrintSettings;
+SimulatorWindow, SimulatorAttributeRun, SimulatorCharacter, SimulatorParagraph,
+@class SimulatorItem, SimulatorApplication, SimulatorColor, SimulatorDocument,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* Simulator.h
+
+@end
+@property BOOL zoomed; // Whether the window is currently zoomed.
+@property (readonly) BOOL zoomable; // Whether the window can be zoomed.
+@property BOOL visible; // Whether the window is currently visible.
+@property (readonly) BOOL titled; // Whether the window has a title bar.
+@property (readonly) BOOL resizable; // Whether the window can be resized.
+@property (copy) NSString *name; // The full title of the window.
+modal window.
+@property (readonly) BOOL modal; // Whether the window is the application's current
+@property BOOL miniaturized; // Whether the window is currently miniaturized.
+@property (readonly) BOOL miniaturizable; // Whether the window can be miniaturized.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (readonly) BOOL floating; // Whether the window floats.
+are being displayed in the window.
+@property (copy, readonly) SimulatorDocument *document; // The document whose contents
+@property (readonly) BOOL closeable; // Whether the window has a close box.
+@property NSRect bounds; // The bounding rectangle of the window.
+@interface SimulatorWindow : SimulatorItem
+// A window.
+@end
+@property (copy) NSString *path; // The document's path.
+@property (copy) NSString *name; // The document's name.
+save?
+@property (readonly) BOOL modified; // Has the document been modified since the last
+@interface SimulatorDocument : SimulatorItem
+// A document.
+@end
+@interface SimulatorColor : SimulatorItem
+// A color.
+@end
+- (void) quitSaving:(SimulatorSavo)saving; // Quit an application.
+(SimulatorPrintSettings *)withProperties; // Print an object.
+- (void) print:(NSURL *)x printDialog:(BOOL)printDialog withProperties:
+- (SimulatorDocument *) open:(NSURL *)x; // Open an object.
+@property (copy, readonly) NSString *version; // The version of the application.
+@property (copy, readonly) NSString *name; // The name of the application.
+@property (readonly) BOOL frontmost; // Is this the frontmost (active) application?
+- (SBElementArray<SimulatorWindow *> *) windows;
+- (SBElementArray<SimulatorDocument *> *) documents;
+
+// Rich (styled) text
+@end
+@property NSInteger size; // The size in points of the first character.
+@property (copy) NSString *font; // The name of the font of the first character.
+@property (copy) NSColor *color; // The color of the first character.
+- (SBElementArray<SimulatorWord *> *) words;
+- (SBElementArray<SimulatorParagraph *> *) paragraphs;
+- (SBElementArray<SimulatorCharacter *> *) characters;
+- (SBElementArray<SimulatorAttributeRun *> *) attributeRuns;
+- (SBElementArray<SimulatorAttachment *> *) attachments;
+@interface SimulatorParagraph : SimulatorItem
+// This subdivides the text into paragraphs.
+@end
+@property NSInteger size; // The size in points of the first character.
+@property (copy) NSString *font; // The name of the font of the first character.
+@property (copy) NSColor *color; // The color of the first character.
+- (SBElementArray<SimulatorWord *> *) words;
+- (SBElementArray<SimulatorParagraph *> *) paragraphs;
+- (SBElementArray<SimulatorCharacter *> *) characters;
+- (SBElementArray<SimulatorAttributeRun *> *) attributeRuns;
+- (SBElementArray<SimulatorAttachment *> *) attachments;
+@interface SimulatorCharacter : SimulatorItem
+// This subdivides the text into characters.
+@end
+@property NSInteger size; // The size in points of the first character.
+@property (copy) NSString *font; // The name of the font of the first character.
+@property (copy) NSColor *color; // The color of the first character.
+- (SBElementArray<SimulatorWord *> *) words;
+- (SBElementArray<SimulatorParagraph *> *) paragraphs;
+- (SBElementArray<SimulatorCharacter *> *) characters;
+- (SBElementArray<SimulatorAttributeRun *> *) attributeRuns;
+- (SBElementArray<SimulatorAttachment *> *) attachments;
+@interface SimulatorAttributeRun : SimulatorItem
+// This subdivides the text into chunks that all have the same attributes.
+*/
+/*
+* Text Suite
+
+should print the document
+@property (copy) NSDate *requestedPrintTime; // the time at which the desktop printer
+@property NSInteger pagesDown; // number of logical pages laid out down a physical page
+@property NSInteger pagesAcross; // number of logical pages laid across a physical page
+@property NSInteger endingPage; // the last page of the document to be printed
+@property NSInteger startingPage; // the first page of the document to be printed
+@property BOOL collating; // Should printed copies be collated?
+@property NSInteger copies; // the number of copies of a document to be printed
+@interface SimulatorPrintSettings : SBObject <SimulatorGenericMethods>
+*/
+/*
+* Type Definitions
+@end
+@property NSInteger size; // The size in points of the first character.
+@property (copy) NSString *font; // The name of the font of the first character.
+@property (copy) NSColor *color; // The color of the first character.
+- (SBElementArray<SimulatorWord *> *) words;
+- (SBElementArray<SimulatorParagraph *> *) paragraphs;
+- (SBElementArray<SimulatorCharacter *> *) characters;
+- (SBElementArray<SimulatorAttributeRun *> *) attributeRuns;
+- (SBElementArray<SimulatorAttachment *> *) attachments;
+@interface SimulatorWord : SimulatorItem
+// This subdivides the text into words.
+@end
+@property (copy) NSString *fileName; // The path to the file for the attachment
+@interface SimulatorAttachment : SimulatorText
+// Represents an inline text attachment. This class is used mainly for make commands.
+@end
+@property NSInteger size; // The size in points of the first character.
+@property (copy) NSString *font; // The name of the font of the first character.
+@property (copy) NSColor *color; // The color of the first character.
+- (SBElementArray<SimulatorWord *> *) words;
+- (SBElementArray<SimulatorParagraph *> *) paragraphs;
+- (SBElementArray<SimulatorCharacter *> *) characters;
+- (SBElementArray<SimulatorAttributeRun *> *) attributeRuns;
+- (SBElementArray<SimulatorAttachment *> *) attachments;
+@interface SimulatorText : SimulatorItem
+
+@end
+@property (copy) NSString *targetPrinter; // for target printer
+@property (copy) NSString *faxNumber; // for fax number
+@property SimulatorEnum errorHandling; // how errors are handled
+

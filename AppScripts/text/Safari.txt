@@ -1,0 +1,109 @@
+@property (copy, readonly) NSString *version; // The version number of the application.
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+- (SBElementArray<SafariWindow *> *) windows;
+- (SBElementArray<SafariDocument *> *) documents;
+@interface SafariApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+@end
+- (void) moveTo:(SBObject *)to; // Move an object to a new location.
+Copy an object.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties; //
+- (void) delete; // Delete an object.
+(BOOL)printDialog; // Print a document.
+- (void) printWithProperties:(NSDictionary *)withProperties printDialog:
+- (void) saveIn:(NSURL *)in_ as:(id)as; // Save a document.
+document.
+- (void) closeSaving:(SafariSaveOptions)saving savingIn:(NSURL *)savingIn; // Close a
+@protocol SafariGenericMethods
+typedef enum SafariPrintingErrorHandling SafariPrintingErrorHandling;
+};
+errors */
+SafariPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of PostScript
+*/,
+SafariPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error handling
+enum SafariPrintingErrorHandling {
+typedef enum SafariSaveOptions SafariSaveOptions;
+};
+SafariSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file. */
+SafariSaveOptionsNo = 'no ' /* Do not save the file. */,
+SafariSaveOptionsYes = 'yes ' /* Save the file. */,
+enum SafariSaveOptions {
+SafariContentsProvider;
+@class SafariApplication, SafariDocument, SafariWindow, SafariTab, SafariSourceProvider,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* Safari.h
+
+// A Safari window.
+*/
+/*
+* Safari suite
+@end
+displayed in the window.
+@property (copy, readonly) SafariDocument *document; // The document whose contents are
+@property BOOL zoomed; // Is the window zoomed right now?
+@property (readonly) BOOL zoomable; // Does the window have a zoom button?
+@property BOOL visible; // Is the window visible right now?
+@property (readonly) BOOL resizable; // Can the window be resized?
+@property BOOL miniaturized; // Is the window minimized right now?
+@property (readonly) BOOL miniaturizable; // Does the window have a minimize button?
+@property (readonly) BOOL closeable; // Does the window have a close button?
+@property NSRect bounds; // The bounding rectangle of the window.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (copy, readonly) NSString *name; // The title of the window.
+@interface SafariWindow : SBObject <SafariGenericMethods>
+// A window.
+@end
+@property (copy, readonly) NSURL *file; // Its location on disk, if it has one.
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface SafariDocument : SBObject <SafariGenericMethods>
+// A document.
+@end
+- (void) showBookmarks; // Shows Safari's bookmarks.
+current search provider.
+- (void) searchTheWebIn:(id)in_ for:(NSString *)for_; // Searches the web using Safari's
+- (void) emailContentsOf:(id)of; // Emails the contents of a tab.
+a document.
+- (id) doJavaScript:(NSString *)x in:(id)in_; // Applies a string of JavaScript code to
+Allows a custom title and preview text to be specified.
+withTitle:(NSString *)withTitle; // Add a new Reading List item with the given URL.
+- (void) addReadingListItem:(NSString *)x andPreviewText:(NSString *)andPreviewText
+- (BOOL) exists:(id)x; // Verify that an object exists.
+- (void) quitSaving:(SafariSaveOptions)saving; // Quit the application.
+(BOOL)printDialog; // Print a document.
+- (void) print:(id)x withProperties:(NSDictionary *)withProperties printDialog:
+- (id) open:(id)x; // Open a document.
+
+@end
+@property (copy, readonly) NSString *name; // The name of the tab.
+@property (readonly) BOOL visible; // Whether the tab is currently visible.
+in the tab. Modifications to text aren't reflected on the web page.
+@property (copy, readonly) NSString *text; // The text of the web page currently loaded
+right.
+@property (copy, readonly) NSNumber *index; // The index of the tab, ordered left to
+@property (copy) NSString *URL; // The current URL of the tab.
+currently loaded in the tab.
+@property (copy, readonly) NSString *source; // The HTML source of the web page
+@interface SafariTab : SBObject <SafariGenericMethods>
+// A Safari window tab.
+@end
+in the document. Modifications to text aren't reflected on the web page.
+@property (copy, readonly) NSString *text; // The text of the web page currently loaded
+@property (copy) NSString *URL; // The current URL of the document.
+currently loaded in the document.
+@property (copy, readonly) NSString *source; // The HTML source of the web page
+@interface SafariDocument (SafariSuite)
+// A Safari document representing the active tab in a window.
+@end
+@property (copy) SafariTab *currentTab; // The current tab.
+- (SBElementArray<SafariTab *> *) tabs;
+@interface SafariWindow (SafariSuite)
+

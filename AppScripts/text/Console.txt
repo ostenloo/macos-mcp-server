@@ -1,0 +1,13 @@
+@end
+- (void) selectDevice:(NSString *)x; // Select a device.
+@interface ConsoleApplication : SBApplication
+*/
+/*
+* Standard Suite
+@class ConsoleApplication;
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* Console.h
+

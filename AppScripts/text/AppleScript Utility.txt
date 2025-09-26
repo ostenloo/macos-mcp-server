@@ -1,0 +1,27 @@
+@end
+menu?
+@property BOOL showComputerScripts; // Are the Computer scripts shown in the Script
+@property BOOL ScriptMenuEnabled; // Is the Script menu installed in the menu bar?
+the position in the Script menu at which the application scripts are displayed
+@property AppleScriptUtilityApplicationScriptsPositions applicationScriptsPosition; //
+being processed?
+@property (readonly) BOOL GUIScriptingEnabled; // Are GUI Scripting events currently
+@property (copy) NSURL *defaultScriptEditor; // the editor to be used to open scripts
+@interface AppleScriptUtilityApplication : SBApplication
+// the AppleScript Utility application
+*/
+/*
+* AppleScript Utility Suite
+AppleScriptUtilityApplicationScriptsPositions;
+typedef enum AppleScriptUtilityApplicationScriptsPositions
+};
+AppleScriptUtilityApplicationScriptsPositionsBottom = 'bttm' /* bottom */
+AppleScriptUtilityApplicationScriptsPositionsTop = 'top ' /* top */,
+enum AppleScriptUtilityApplicationScriptsPositions {
+@class AppleScriptUtilityApplication;
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* AppleScriptUtility.h
+

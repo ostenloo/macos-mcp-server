@@ -1,0 +1,81 @@
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+- (SBElementArray<InstrumentsWindow *> *) windows;
+- (SBElementArray<InstrumentsDocument *> *) documents;
+@interface InstrumentsApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+@end
+- (void) moveTo:(SBObject *)to; // Move an object to a new location.
+Copy an object.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties; //
+- (void) delete; // Delete an object.
+(BOOL)printDialog; // Print a document.
+- (void) printWithProperties:(NSDictionary *)withProperties printDialog:
+- (void) saveIn:(NSURL *)in_ as:(id)as; // Save a document.
+a document.
+- (void) closeSaving:(InstrumentsSaveOptions)saving savingIn:(NSURL *)savingIn; // Close
+@protocol InstrumentsGenericMethods
+typedef enum InstrumentsPrintingErrorHandling InstrumentsPrintingErrorHandling;
+};
+PostScript errors */
+InstrumentsPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of
+handling */,
+InstrumentsPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error
+enum InstrumentsPrintingErrorHandling {
+typedef enum InstrumentsSaveOptions InstrumentsSaveOptions;
+};
+*/
+InstrumentsSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file.
+InstrumentsSaveOptionsNo = 'no ' /* Do not save the file. */,
+InstrumentsSaveOptionsYes = 'yes ' /* Save the file. */,
+enum InstrumentsSaveOptions {
+InstrumentsDocument;
+@class InstrumentsApplication, InstrumentsDocument, InstrumentsWindow,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* Instruments.h
+
+@end
+@property (copy, readonly) NSURL *file; // Its location on disk, if it has one.
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface InstrumentsDocument (InstrumentsData)
+// A Trace Document.
+*/
+/*
+* Instruments Data
+@end
+are displayed in the window.
+@property (copy, readonly) InstrumentsDocument *document; // The document whose contents
+@property BOOL zoomed; // Is the window zoomed right now?
+@property (readonly) BOOL zoomable; // Does the window have a zoom button?
+@property BOOL visible; // Is the window visible right now?
+@property (readonly) BOOL resizable; // Can the window be resized?
+@property BOOL miniaturized; // Is the window minimized right now?
+@property (readonly) BOOL miniaturizable; // Does the window have a minimize button?
+@property (readonly) BOOL closeable; // Does the window have a close button?
+@property NSRect bounds; // The bounding rectangle of the window.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (copy, readonly) NSString *name; // The title of the window.
+@interface InstrumentsWindow : SBObject <InstrumentsGenericMethods>
+// A window.
+@end
+@property (copy, readonly) NSURL *file; // Its location on disk, if it has one.
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface InstrumentsDocument : SBObject <InstrumentsGenericMethods>
+// A document.
+@end
+- (BOOL) exists:(id)x; // Verify that an object exists.
+- (void) quitSaving:(InstrumentsSaveOptions)saving; // Quit the application.
+(BOOL)printDialog; // Print a document.
+- (void) print:(id)x withProperties:(NSDictionary *)withProperties printDialog:
+- (id) open:(id)x; // Open a document.
+@property (copy, readonly) NSString *version; // The version number of the application.
+

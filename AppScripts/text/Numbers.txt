@@ -1,0 +1,414 @@
+NumbersNMCTCurrency = 'fcur' /* Currency number format */,
+NumbersNMCTCheckbox = 'fcch' /* Checkbox control format (Numbers only) */,
+NumbersNMCTAutomatic = 'faut' /* Automatic format */,
+enum NumbersNMCT {
+typedef enum NumbersNMSD NumbersNMSD;
+};
+NumbersNMSDDescending = 'dscn' /* Sort in decreasing value order */
+NumbersNMSDAscending = 'ascn' /* Sort in increasing value order */,
+enum NumbersNMSD {
+typedef enum NumbersTAHT NumbersTAHT;
+};
+NumbersTAHTRight = 'arit' /* Right-align content. */
+NumbersTAHTLeft = 'alft' /* Left-align content. */,
+NumbersTAHTJustify = 'ajst' /* Fully justify (left and right) content. */,
+NumbersTAHTCenter = 'actr' /* Center-align content. */,
+NumbersTAHTAutoAlign = 'aaut' /* Auto-align based on content type. */,
+enum NumbersTAHT {
+typedef enum NumbersTAVT NumbersTAVT;
+};
+NumbersTAVTTop = 'avtp' /* Top-align content. */
+NumbersTAVTCenter = 'actr' /* Center-align content. */,
+NumbersTAVTBottom = 'avbt' /* Right-align content. */,
+enum NumbersTAVT {
+typedef enum NumbersPrintingErrorHandling NumbersPrintingErrorHandling;
+};
+PostScript errors */
+NumbersPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of
+*/,
+NumbersPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error handling
+enum NumbersPrintingErrorHandling {
+typedef enum NumbersSaveOptions NumbersSaveOptions;
+};
+NumbersSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file. */
+NumbersSaveOptionsNo = 'no ' /* Do not save the file. */,
+NumbersSaveOptionsYes = 'yes ' /* Save the file. */,
+enum NumbersSaveOptions {
+NumbersColumn, NumbersSheet, NumbersTemplate;
+NumbersMovie, NumbersTable, NumbersTextItem, NumbersRange, NumbersCell, NumbersRow,
+NumbersAudioClip, NumbersShape, NumbersChart, NumbersImage, NumbersGroup, NumbersLine,
+NumbersCharacter, NumbersParagraph, NumbersWord, NumbersIWorkContainer, NumbersIWorkItem,
+@class NumbersApplication, NumbersDocument, NumbersWindow, NumbersRichText,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* Numbers.h
+
+- (void) closeSaving:(NumbersSaveOptions)saving savingIn:(NSURL *)savingIn; // Close a
+@protocol NumbersGenericMethods
+typedef enum NumbersImageQuality NumbersImageQuality;
+};
+NumbersImageQualityBest = 'KnP2' /* Best quality. */
+NumbersImageQualityBetter = 'KnP1' /* Better quality. */,
+NumbersImageQualityGood = 'KnP0' /* Good quality. */,
+enum NumbersImageQuality {
+typedef enum NumbersExportFormat NumbersExportFormat;
+};
+NumbersExportFormatNumbers09 = 'Nnmb' /* Numbers 09 */
+NumbersExportFormatCSV = 'Ncsv' /* CSV */,
+NumbersExportFormatMicrosoftExcel = 'Nexl' /* Microsoft Excel */,
+NumbersExportFormatPDF = 'Npdf' /* PDF */,
+enum NumbersExportFormat {
+typedef enum NumbersSaveableFileFormat NumbersSaveableFileFormat;
+};
+NumbersSaveableFileFormatNumbers = 'Nuff' /* The Numbers native file format */
+enum NumbersSaveableFileFormat {
+typedef enum NumbersPlaybackRepetitionMethod NumbersPlaybackRepetitionMethod;
+};
+NumbersPlaybackRepetitionMethodLoopBackAndForth = 'mvbf' /* */
+NumbersPlaybackRepetitionMethodLoop = 'mvlp' /* */,
+NumbersPlaybackRepetitionMethodNone = 'mvrn' /* */,
+enum NumbersPlaybackRepetitionMethod {
+typedef enum NumbersItemFillOptions NumbersItemFillOptions;
+};
+NumbersItemFillOptionsAdvancedImageFill = 'fiai' /* */
+NumbersItemFillOptionsImageFill = 'fiim' /* */,
+NumbersItemFillOptionsAdvancedGradientFill = 'fiag' /* */,
+NumbersItemFillOptionsGradientFill = 'figr' /* */,
+NumbersItemFillOptionsColorFill = 'fico' /* */,
+NumbersItemFillOptionsNoFill = 'fino' /* */,
+enum NumbersItemFillOptions {
+typedef enum NumbersNMCT NumbersNMCT;
+};
+NumbersNMCTNumeralSystem = 'fcns' /* Numeral System */
+NumbersNMCTRating = 'frat' /* Rating format. (Numbers only) */,
+NumbersNMCTDuration = 'fdur' /* Duration format */,
+NumbersNMCTText = 'ctxt' /* Text format */,
+NumbersNMCTStepper = 'fcst' /* Stepper control format (Numbers only) */,
+NumbersNMCTSlider = 'fcsl' /* Slider control format (Numbers only) */,
+NumbersNMCTScientific = 'fsci' /* Scientific notation format */,
+NumbersNMCTPopUpMenu = 'fcpp' /* Pop-up menu control format (Numbers only) */,
+NumbersNMCTPercent = 'fper' /* Percentage number format */,
+NumbersNMCTNumber = 'nmbr' /* Decimal number format */,
+NumbersNMCTFraction = 'ffra' /* Fraction number format */,
+NumbersNMCTDateAndTime = 'fdtm' /* Date and time format */,
+
+@interface NumbersWindow : SBObject <NumbersGenericMethods>
+// A window.
+@end
+*)withProperties; // Export a document to another file
+- (void) exportTo:(NSURL *)to as:(NumbersExportFormat)as withProperties:(NSDictionary
+@property (copy, readonly) NSURL *file; // Its location on disk, if it has one.
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface NumbersDocument : SBObject <NumbersGenericMethods>
+// A document.
+@end
+password from the document.
+- (void) removePassword:(NSString *)x from:(NumbersDocument *)from; // Remove the
+savingInKeychain:(BOOL)savingInKeychain; // Set a password to an unencrypted document.
+- (void) setPassword:(NSString *)x to:(NumbersDocument *)to hint:(NSString *)hint
+- (BOOL) exists:(id)x; // Verify that an object exists.
+- (void) quitSaving:(NumbersSaveOptions)saving; // Quit the application.
+(BOOL)printDialog; // Print a document.
+- (void) print:(id)x withProperties:(NSDictionary *)withProperties printDialog:
+- (id) open:(id)x; // Open a document.
+@property (copy, readonly) NSString *version; // The version number of the application.
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+- (SBElementArray<NumbersWindow *> *) windows;
+- (SBElementArray<NumbersDocument *> *) documents;
+@interface NumbersApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+@end
+- (void) delete; // Delete an object.
+- (void) moveTo:(SBObject *)to; // Move an object to a new location.
+Copy an object.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties; //
+- (void) delete; // Delete an object.
+(BOOL)printDialog; // Print a document.
+- (void) printWithProperties:(NSDictionary *)withProperties printDialog:
+- (void) saveIn:(NSURL *)in_ as:(NumbersSaveableFileFormat)as; // Save a document.
+document.
+
+@end
+- (SBElementArray<NumbersWord *> *) words;
+- (SBElementArray<NumbersCharacter *> *) characters;
+@interface NumbersParagraph : NumbersRichText
+// One of some text's paragraphs.
+@end
+@interface NumbersCharacter : NumbersRichText
+// One of some text's characters.
+@end
+@property double size; // The size of the font.
+the Font Book application get the information about a typeface.
+such as: “TimesNewRomanPS-ItalicMT”, or display name: “Times New Roman Italic”. TIP: Use
+@property (copy) NSString *font; // The name of the font. Can be the PostScript name,
+consisting of a list of three color values from 0 to 65535. ex: Blue = {0, 0, 65535}.
+@property (copy) NSColor *color; // The color of the font. Expressed as an RGB value
+- (SBElementArray<NumbersWord *> *) words;
+- (SBElementArray<NumbersParagraph *> *) paragraphs;
+- (SBElementArray<NumbersCharacter *> *) characters;
+@interface NumbersRichText : SBObject <NumbersGenericMethods>
+// This provides the base rich text class for all iWork applications.
+*/
+/*
+* iWork Text Suite
+@end
+displayed in the window.
+@property (copy, readonly) NumbersDocument *document; // The document whose contents are
+@property BOOL zoomed; // Is the window zoomed right now?
+@property (readonly) BOOL zoomable; // Does the window have a zoom button?
+@property BOOL visible; // Is the window visible right now?
+@property (readonly) BOOL resizable; // Can the window be resized?
+@property BOOL miniaturized; // Is the window minimized right now?
+@property (readonly) BOOL miniaturizable; // Does the window have a minimize button?
+@property (readonly) BOOL closeable; // Does the window have a close button?
+@property NSRect bounds; // The bounding rectangle of the window.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (copy, readonly) NSString *name; // The title of the window.
+
+// An audio clip
+@end
+@property NSInteger width; // The width of the iWork item.
+point of the iWork item.
+@property NSPoint position; // The horizontal and vertical coordinates of the top left
+containing this iWork item.
+@property (copy, readonly) NumbersIWorkContainer *parent; // The iWork container
+@property BOOL locked; // Whether the object is locked.
+@property NSInteger height; // The height of the iWork item.
+@interface NumbersIWorkItem : SBObject <NumbersGenericMethods>
+// An item which supports formatting
+@end
+- (SBElementArray<NumbersTextItem *> *) textItems;
+- (SBElementArray<NumbersTable *> *) tables;
+- (SBElementArray<NumbersShape *> *) shapes;
+- (SBElementArray<NumbersMovie *> *) movies;
+- (SBElementArray<NumbersLine *> *) lines;
+- (SBElementArray<NumbersGroup *> *) groups;
+- (SBElementArray<NumbersIWorkItem *> *) iWorkItems;
+- (SBElementArray<NumbersImage *> *) images;
+- (SBElementArray<NumbersChart *> *) charts;
+- (SBElementArray<NumbersAudioClip *> *) audioClips;
+@interface NumbersIWorkContainer : SBObject <NumbersGenericMethods>
+// A container for iWork items
+@end
+protected or not.
+@property (readonly) BOOL passwordProtected; // Whether the document is password
+selected items.
+@property (copy) NSArray<NumbersIWorkItem *> *selection; // A list of the currently
+@interface NumbersDocument (IWorkSuite)
+*/
+/*
+* iWork Suite
+@end
+- (SBElementArray<NumbersCharacter *> *) characters;
+@interface NumbersWord : NumbersRichText
+// One of some text's words.
+
+@property (copy, readonly) NumbersIWorkContainer *parent; // The iWork container
+@property NSInteger height; // The height of the iWork item.
+@interface NumbersGroup : NumbersIWorkContainer
+// A group container
+@end
+359.
+@property NSInteger rotation; // The rotation of the iWork item, in degrees from 0 to
+from 0 (none) to 100 (full).
+@property NSInteger reflectionValue; // The percentage of reflection of the iWork item,
+@property BOOL reflectionShowing; // Is the iWork item displaying a reflection?
+@property NSInteger opacity; // The opacity of the object, in percent.
+@property (copy) id fileName; // The name of the image file.
+@property (copy, readonly) NSURL *file; // The image file.
+aloud by VoiceOver.
+@property (copy) NSString *objectDescription; // Text associated with the image, read
+@interface NumbersImage : NumbersIWorkItem
+// An image container
+@end
+@interface NumbersChart : NumbersIWorkItem
+// A chart
+@end
+@property NSInteger opacity; // The opacity of the object, in percent.
+359.
+@property NSInteger rotation; // The rotation of the iWork item, in degrees from 0 to
+from 0 (none) to 100 (full).
+@property NSInteger reflectionValue; // The percentage of reflection of the iWork item,
+@property BOOL reflectionShowing; // Is the iWork item displaying a reflection?
+@property (copy) NumbersRichText *objectText; // The text contained within the shape.
+any, for the shape.
+@property (readonly) NumbersItemFillOptions backgroundFillType; // The background, if
+@interface NumbersShape : NumbersIWorkItem
+// A shape container
+@end
+repeats.
+@property NumbersPlaybackRepetitionMethod repetitionMethod; // If or how the audio clip
+to 100 (full volume).
+@property NSInteger clipVolume; // The volume setting for the audio clip, from 0 (none)
+@property (copy) id fileName; // The name of the audio file.
+@interface NumbersAudioClip : NumbersIWorkItem
+
+in the table.
+@property (copy, readonly) NumbersRange *cellRange; // The range describing every cell
+@property (copy) NSString *name; // The item's name.
+- (SBElementArray<NumbersRange *> *) ranges;
+- (SBElementArray<NumbersColumn *> *) columns;
+- (SBElementArray<NumbersRow *> *) rows;
+- (SBElementArray<NumbersCell *> *) cells;
+@interface NumbersTable : NumbersIWorkItem
+// A table
+@end
+359.
+@property NSInteger rotation; // The rotation of the iWork item, in degrees from 0 to
+repeats.
+@property NumbersPlaybackRepetitionMethod repetitionMethod; // If or how the movie
+from 0 (none) to 100 (full).
+@property NSInteger reflectionValue; // The percentage of reflection of the iWork item,
+@property BOOL reflectionShowing; // Is the iWork item displaying a reflection?
+@property NSInteger opacity; // The opacity of the object, in percent.
+100 (full volume).
+@property NSInteger movieVolume; // The volume setting for the movie, from 0 (none) to
+@property (copy) id fileName; // The name of the movie file.
+@interface NumbersMovie : NumbersIWorkItem
+// A movie container
+@end
+vertical position of the line starting point.
+@property NSPoint startPoint; // A list of two numbers indicating the horizontal and
+359.
+@property NSInteger rotation; // The rotation of the iWork item, in degrees from 0 to
+from 0 (none) to 100 (full).
+@property NSInteger reflectionValue; // The percentage of reflection of the iWork item,
+@property BOOL reflectionShowing; // Is the iWork item displaying a reflection?
+vertical position of the line ending point.
+@property NSPoint endPoint; // A list of two numbers indicating the horizontal and
+@interface NumbersLine : NumbersIWorkItem
+// A line
+@end
+359.
+@property NSInteger rotation; // The rotation of the iWork item, in degrees from 0 to
+@property NSInteger width; // The width of the iWork item.
+point of the iWork item.
+@property NSPoint position; // The horizontal and vertical coordinates of the top left
+containing this iWork item.
+
+- (SBObject *) addColumnAfter; // Add a column to the table after a specified range of
+- (void) unmerge; // Unmerge all merged cells in a specified range.
+- (void) merge; // Merge a specified range of cells.
+formatting and style.
+- (void) clear; // Clear the contents of a specified range of cells, including
+range's cells.
+@property NumbersTAVT verticalAlignment; // The vertical alignment of content in the
+@property (copy) NSColor *backgroundColor; // The background color of the range's cells.
+@property BOOL textWrap; // Whether text should wrap in the range's cells.
+@property (copy) NSColor *textColor; // The text color of the range's cells.
+@property (copy, readonly) NSString *name; // The range's coordinates.
+cells.
+@property NumbersTAHT alignment; // The horizontal alignment of content in the range's
+@property NumbersNMCT format; // The format of the range's cells.
+@property double fontSize; // The font size of the range's cells.
+@property (copy) NSString *fontName; // The font of the range's cells.
+- (SBElementArray<NumbersRow *> *) rows;
+- (SBElementArray<NumbersColumn *> *) columns;
+- (SBElementArray<NumbersCell *> *) cells;
+@interface NumbersRange : SBObject <NumbersGenericMethods>
+// A range of cells in a table
+@end
+359.
+@property NSInteger rotation; // The rotation of the iWork item, in degrees from 0 to
+from 0 (none) to 100 (full).
+@property NSInteger reflectionValue; // The percentage of reflection of the iWork item,
+@property BOOL reflectionShowing; // Is the iWork item displaying a reflection?
+@property NSInteger opacity; // The opacity of the object, in percent.
+item.
+@property (copy) NumbersRichText *objectText; // The text contained within the text
+any, for the text item.
+@property (readonly) NumbersItemFillOptions backgroundFillType; // The background, if
+@interface NumbersTextItem : NumbersIWorkItem
+// A text container
+@end
+- (void) transpose; // Transpose the rows and columns of the table.
+*)inRows; // Sort the rows of the table.
+- (void) sortBy:(NumbersColumn *)by direction:(NumbersNMSD)direction inRows:(NumbersRange
+@property NSInteger footerRowCount; // The number of footer rows in the table.
+@property NSInteger headerColumnCount; // The number of header columns in the table.
+@property NSInteger headerRowCount; // The number of header rows in the table.
+@property NSInteger columnCount; // The number of columns in the table.
+@property NSInteger rowCount; // The number of rows in the table.
+table.
+@property (copy) NumbersRange *selectionRange; // The cells currently selected in the
+
+- (SBElementArray<NumbersTemplate *> *) templates;
+@interface NumbersApplication (NumbersSuite)
+// The Numbers application.
+*/
+/*
+* Numbers Suite
+@end
+@property double width; // The width of the column.
+second column has address 2).
+@property (readonly) NSInteger address; // The column's index in the table (e.g., the
+@interface NumbersColumn : NumbersRange
+// A column of cells in a table
+@end
+@property double height; // The height of the row.
+second row has address 2).
+@property (readonly) NSInteger address; // The row's index in the table (e.g., the
+@interface NumbersRow : NumbersRange
+// A row of cells in a table
+@end
+value of a cell to a formula as text, use the value property.
+=SUM(40+2). If the cell does not contain a formula, returns missing value. To set the
+@property (copy, readonly) NSString *formula; // The formula in the cell, as text, e.g.
+or missing value if the cell is empty.
+@property (copy, readonly) NSString *formattedValue; // The formatted value in the cell,
+is empty.
+@property (copy) id value; // The actual value in the cell, or missing value if the cell
+@property (copy, readonly) NumbersRow *row; // The cell's row.
+@property (copy, readonly) NumbersColumn *column; // The cell's column.
+@interface NumbersCell : NumbersRange
+// A cell in a table
+@end
+- (void) remove; // Remove specified rows or columns from a table.
+- (SBObject *) addRowBelow; // Add a row to the table below a specified range of cells.
+- (SBObject *) addRowAbove; // Add a row to the table below a specified range of cells.
+cells.
+- (SBObject *) addColumnBefore; // Add a column to the table before a specified range of
+cells.
+
+@interface NumbersColumn (CompatibilitySuite)
+@end
+@end
+*/
+/*
+@interface NumbersRow (CompatibilitySuite)
+@interface NumbersRange (CompatibilitySuite)
+* Compatibility Suite
+@end
+@property (copy, readonly) NSString *name; // The localized name displayed to the user.
+- (NSString *) id; // The identifier used by the application.
+@interface NumbersTemplate : SBObject <NumbersGenericMethods>
+// A styled document layout.
+@end
+@property BOOL headerColumnsFrozen; // Whether header columns are frozen.
+@property BOOL headerRowsFrozen; // Whether header rows are frozen.
+@property BOOL filtered; // Whether the table is currently filtered.
+@interface NumbersTable (NumbersSuite)
+@end
+@property (copy) NSString *name; // The sheet's name.
+@interface NumbersSheet : NumbersIWorkContainer
+// A sheet in a document
+@end
+@property (copy) NumbersSheet *activeSheet; // The active sheet.
+to the document.
+@property (copy, readonly) NumbersTemplate *documentTemplate; // The template assigned
+- (NSString *) id; // Document ID.
+- (SBElementArray<NumbersSheet *> *) sheets;
+@interface NumbersDocument (NumbersSuite)
+// The Numbers document.
+@end
+
+@end
+

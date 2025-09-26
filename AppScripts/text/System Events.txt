@@ -1,0 +1,1340 @@
+typedef enum SystemEventsPrintingErrorHandling SystemEventsPrintingErrorHandling;
+};
+PostScript errors */
+SystemEventsPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of
+handling */,
+SystemEventsPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error
+enum SystemEventsPrintingErrorHandling {
+typedef enum SystemEventsSaveOptions SystemEventsSaveOptions;
+};
+*/
+SystemEventsSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file.
+SystemEventsSaveOptionsNo = 'no ' /* Do not save the file. */,
+SystemEventsSaveOptionsYes = 'yes ' /* Save the file. */,
+enum SystemEventsSaveOptions {
+SystemEventsScriptingResultObject, SystemEventsScriptingSuite;
+SystemEventsScriptingParameter, SystemEventsScriptingProperty,
+SystemEventsScriptingEnumeration, SystemEventsScriptingEnumerator,
+SystemEventsScriptingDefinitionObject, SystemEventsScriptingElement,
+SystemEventsPrintSettings, SystemEventsScriptingClass, SystemEventsScriptingCommand,
+SystemEventsXMLData, SystemEventsXMLElement, SystemEventsXMLFile,
+SystemEventsData, SystemEventsPropertyListItem, SystemEventsXMLAttribute,
+SystemEventsToolbar, SystemEventsValueIndicator, SystemEventsPropertyListFile,
+SystemEventsTabGroup, SystemEventsTable, SystemEventsTextArea, SystemEventsTextField,
+SystemEventsSplitter, SystemEventsSplitterGroup, SystemEventsStaticText,
+SystemEventsScrollArea, SystemEventsScrollBar, SystemEventsSheet, SystemEventsSlider,
+SystemEventsRadioGroup, SystemEventsRelevanceIndicator, SystemEventsRow,
+SystemEventsDeskAccessoryProcess, SystemEventsProgressIndicator, SystemEventsRadioButton,
+SystemEventsPopUpButton, SystemEventsProcess, SystemEventsApplicationProcess,
+SystemEventsMenuButton, SystemEventsMenuItem, SystemEventsOutline, SystemEventsPopOver,
+SystemEventsList, SystemEventsMenu, SystemEventsMenuBar, SystemEventsMenuBarItem,
+SystemEventsGroup, SystemEventsGrowArea, SystemEventsImage, SystemEventsIncrementor,
+SystemEventsColorWell, SystemEventsColumn, SystemEventsComboBox, SystemEventsDrawer,
+SystemEventsBrowser, SystemEventsBusyIndicator, SystemEventsButton, SystemEventsCheckbox,
+SystemEventsScript, SystemEventsAction, SystemEventsAttribute, SystemEventsUIElement,
+SystemEventsSystemDomainObject, SystemEventsUserDomainObject, SystemEventsFolderAction,
+SystemEventsFolder, SystemEventsLocalDomainObject, SystemEventsNetworkDomainObject,
+SystemEventsClassicDomainObject, SystemEventsFile, SystemEventsFilePackage,
+SystemEventsDiskItem, SystemEventsAlias, SystemEventsDisk, SystemEventsDomain,
+SystemEventsScreenSaverPreferencesObject, SystemEventsSecurityPreferencesObject,
+SystemEventsNetworkPreferencesObject, SystemEventsService, SystemEventsScreenSaver,
+SystemEventsConfiguration, SystemEventsInterface, SystemEventsLocation,
+SystemEventsDesktop, SystemEventsDockPreferencesObject, SystemEventsLoginItem,
+SystemEventsCDAndDVDPreferencesObject, SystemEventsInsertionPreference,
+SystemEventsUser, SystemEventsAppearancePreferencesObject,
+@class SystemEventsApplication, SystemEventsDocument, SystemEventsWindow,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* SystemEvents.h
+
+SystemEventsDynamicStyleUnknown = 'unk\?' /* unknown value */
+SystemEventsDynamicStyleDark = 'dark' /* dark */,
+SystemEventsDynamicStyleLight = 'lite' /* light */,
+picture based on time and/or location) */,
+SystemEventsDynamicStyleDynamic = 'dynm' /* dynamic (if supported, updates desktop
+appearance) */,
+SystemEventsDynamicStyleAuto = 'atmt' /* automatic (if supported, follows light/dark
+enum SystemEventsDynamicStyle {
+typedef enum SystemEventsDhac SystemEventsDhac;
+};
+SystemEventsDhacRunAScript = 'dhrs' /* run a script */
+SystemEventsDhacOpenApplication = 'dhap' /* open application */,
+SystemEventsDhacIgnore = 'dhig' /* ignore */,
+SystemEventsDhacAskWhatToDo = 'dhas' /* ask what to do */,
+enum SystemEventsDhac {
+typedef enum SystemEventsHighlightColors SystemEventsHighlightColors;
+};
+SystemEventsHighlightColorsSilver = 'slvr' /* silver */
+SystemEventsHighlightColorsRed = 'red ' /* red */,
+SystemEventsHighlightColorsPurple = 'prpl' /* purple */,
+SystemEventsHighlightColorsOrange = 'orng' /* orange */,
+SystemEventsHighlightColorsGreen = 'gren' /* green */,
+SystemEventsHighlightColorsGraphite = 'grft' /* graphite */,
+SystemEventsHighlightColorsGold = 'gold' /* gold */,
+SystemEventsHighlightColorsBlue = 'blue' /* blue */,
+enum SystemEventsHighlightColors {
+typedef enum SystemEventsAppearances SystemEventsAppearances;
+};
+SystemEventsAppearancesGraphite = 'grft' /* graphite */
+SystemEventsAppearancesBlue = 'blue' /* blue */,
+enum SystemEventsAppearances {
+typedef enum SystemEventsFontSmoothingStyles SystemEventsFontSmoothingStyles;
+};
+SystemEventsFontSmoothingStylesStrong = 'strg' /* strong */
+SystemEventsFontSmoothingStylesStandard = 'stnd' /* standard */,
+SystemEventsFontSmoothingStylesMedium = 'medi' /* medium */,
+SystemEventsFontSmoothingStylesLight = 'lite' /* light */,
+SystemEventsFontSmoothingStylesAutomatic = 'autm' /* automatic */,
+enum SystemEventsFontSmoothingStyles {
+typedef enum SystemEventsScrollPageBehaviors SystemEventsScrollPageBehaviors;
+};
+SystemEventsScrollPageBehaviorsJumpToNextPage = 'nxpg' /* jump to next page */
+SystemEventsScrollPageBehaviorsJumpToHere = 'tohr' /* jump to here */,
+enum SystemEventsScrollPageBehaviors {
+typedef enum SystemEventsSaveableFileFormat SystemEventsSaveableFileFormat;
+};
+SystemEventsSaveableFileFormatText = 'ctxt' /* Text File Format */
+enum SystemEventsSaveableFileFormat {
+
+SystemEventsEMkyShift = 'eSft' /* shift */
+SystemEventsEMkyOption = 'eOpt' /* option */,
+SystemEventsEMkyControl = 'eCnt' /* control */,
+SystemEventsEMkyCommand = 'eCmd' /* command */,
+enum SystemEventsEMky {
+typedef enum SystemEventsEMds SystemEventsEMds;
+};
+SystemEventsEMdsShiftDown = 'Ksft' /* shift down */
+SystemEventsEMdsOptionDown = 'Kopt' /* option down */,
+SystemEventsEMdsControlDown = 'Kctl' /* control down */,
+SystemEventsEMdsCommandDown = 'Kcmd' /* command down */,
+enum SystemEventsEMds {
+typedef enum SystemEventsEdfm SystemEventsEdfm;
+};
+SystemEventsEdfmWebDAVFormat = 'dfwd' /* WebDAV format */
+SystemEventsEdfmUnknownFormat = 'df$$' /* unknown format */,
+SystemEventsEdfmUFSFormat = 'dfuf' /* UFS format */,
+SystemEventsEdfmUDFFormat = 'dfud' /* UDF format */,
+SystemEventsEdfmQuickTakeFormat = 'dfqt' /* QuickTake format */,
+SystemEventsEdfmProDOSFormat = 'dfpr' /* ProDOS format */,
+SystemEventsEdfmNFSFormat = 'dfnf' /* NFS format */,
+SystemEventsEdfmMSDOSFormat = 'dfms' /* MSDOS format */,
+SystemEventsEdfmMacOSFormat = 'dfhf' /* Mac OS format */,
+SystemEventsEdfmMacOSExtendedFormat = 'dfh+' /* Mac OS Extended format */,
+SystemEventsEdfmISO9660Format = 'df96' /* ISO 9660 format */,
+SystemEventsEdfmHighSierraFormat = 'dfhs' /* High Sierra format */,
+SystemEventsEdfmAudioFormat = 'dfau' /* audio format */,
+SystemEventsEdfmAppleShareFormat = 'dfas' /* AppleShare format */,
+SystemEventsEdfmApplePhotoFormat = 'dfph' /* Apple Photo format */,
+enum SystemEventsEdfm {
+typedef enum SystemEventsDpbh SystemEventsDpbh;
+};
+SystemEventsDpbhZoom = 'ddzo' /* zoom */
+SystemEventsDpbhOff = 'ddof' /* off */,
+SystemEventsDpbhMinimize = 'ddmi' /* minimize */,
+enum SystemEventsDpbh {
+typedef enum SystemEventsDpef SystemEventsDpef;
+};
+SystemEventsDpefScale = 'scal' /* scale */
+SystemEventsDpefGenie = 'geni' /* genie */,
+enum SystemEventsDpef {
+typedef enum SystemEventsDpls SystemEventsDpls;
+};
+SystemEventsDplsRight = 'righ' /* right */
+SystemEventsDplsLeft = 'left' /* left */,
+SystemEventsDplsBottom = 'bott' /* bottom */,
+enum SystemEventsDpls {
+typedef enum SystemEventsDynamicStyle SystemEventsDynamicStyle;
+};
+
+or more files.
+- (void) abortTransaction; // Discard the results of a bounded update session with one
+- (BOOL) exists:(id)x; // Verify that an object exists.
+- (void) quitSaving:(SystemEventsSaveOptions)saving; // Quit the application.
+printDialog:(BOOL)printDialog; // Print a document.
+- (void) print:(id)x withProperties:(SystemEventsPrintSettings *)withProperties
+- (id) open:(id)x; // Open a document.
+@property (copy, readonly) NSString *version; // The version number of the application.
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+- (SBElementArray<SystemEventsWindow *> *) windows;
+- (SBElementArray<SystemEventsDocument *> *) documents;
+@interface SystemEventsApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+@end
+- (void) moveTo:(SBObject *)to; // Move an object to a new location.
+Copy an object.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties; //
+- (void) delete; // Delete an object.
+(BOOL)printDialog; // Print a document.
+- (void) printWithProperties:(SystemEventsPrintSettings *)withProperties printDialog:
+document.
+- (void) saveIn:(SystemEventsFile *)in_ as:(SystemEventsSaveableFileFormat)as; // Save a
+*)savingIn; // Close a document.
+- (void) closeSaving:(SystemEventsSaveOptions)saving savingIn:(SystemEventsFile
+@protocol SystemEventsGenericMethods
+typedef enum SystemEventsAccs SystemEventsAccs;
+};
+SystemEventsAccsWriteOnly = 'writ' /* write only */
+SystemEventsAccsReadWrite = 'rdwr' /* read write */,
+SystemEventsAccsReadOnly = 'read' /* read only */,
+SystemEventsAccsNone = 'none' /* none */,
+enum SystemEventsAccs {
+typedef enum SystemEventsEnum SystemEventsEnum;
+};
+SystemEventsEnumDetailed = 'lwdt' /* print a detailed report of PostScript errors */
+SystemEventsEnumStandard = 'lwst' /* Standard PostScript error handling */,
+enum SystemEventsEnum {
+typedef enum SystemEventsEMky SystemEventsEMky;
+};
+
+@end
+contents are displayed in the window.
+@property (copy, readonly) SystemEventsDocument *document; // The document whose
+@property BOOL zoomed; // Is the window zoomed right now?
+@property (readonly) BOOL zoomable; // Does the window have a zoom button?
+@property BOOL visible; // Is the window visible right now?
+@property (readonly) BOOL resizable; // Can the window be resized?
+@property BOOL miniaturized; // Is the window minimized right now?
+@property (readonly) BOOL miniaturizable; // Does the window have a minimize button?
+@property (readonly) BOOL closeable; // Does the window have a close button?
+@property NSRect bounds; // The bounding rectangle of the window.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (copy, readonly) NSString *name; // The title of the window.
+@interface SystemEventsWindow : SBObject <SystemEventsGenericMethods>
+// A window.
+@end
+one.
+@property (copy, readonly) SystemEventsFile *file; // Its location on disk, if it has
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface SystemEventsDocument : SBObject <SystemEventsGenericMethods>
+// A document.
+@end
+as if keystrokes were entered
+- (void) keystroke:(NSString *)x using:(id)using_; // cause the target process to behave
+codes were entered
+- (void) keyCode:(id)x using:(id)using_; // cause the target process to behave as if key
+the UI element were clicked
+- (id) clickAt:(NSArray<NSNumber *> *)at; // cause the target process to behave as if
+- (void) sleep; // Put the computer to sleep
+computer
+- (void) shutDownStateSavingPreference:(BOOL)stateSavingPreference; // Shut Down the
+computer
+- (void) restartStateSavingPreference:(BOOL)stateSavingPreference; // Restart the
+- (void) logOut; // Log out the current user
+application.
+- (SystemEventsFile *) open:(id)x; // Open disk item(s) with the appropriate
+- (id) move:(id)x to:(id)to; // Move disk item(s) to a new location.
+more files.
+- (void) endTransaction; // Apply the results of a bounded update session with one or
+files.
+- (NSInteger) beginTransaction; // Begin a bounded update session with one or more
+
+@end
+collection of appearance preferences
+@property (copy) SystemEventsAppearancePreferencesObject *appearancePreferences; // a
+@interface SystemEventsApplication (AppearanceSuite)
+// The System Events application
+*/
+/*
+* Appearance Suite
+@end
+only!
+@property (copy) id picturePath; // path to user's picture. Can be set for current user
+@property (copy, readonly) NSString *name; // user's short name
+@property (copy, readonly) id homeDirectory; // path to user's home directory
+@property (copy, readonly) NSString *fullName; // user's full name
+@interface SystemEventsUser : SBObject <SystemEventsGenericMethods>
+// user account
+@end
+user
+@property (copy, readonly) SystemEventsUser *currentUser; // the currently logged in
+- (SBElementArray<SystemEventsUser *> *) users;
+@interface SystemEventsApplication (AccountsSuite)
+// The System Events application
+*/
+/*
+* Accounts Suite
+@end
+bar?
+@property (readonly) BOOL scriptMenuEnabled; // Is the Script menu installed in the menu
+quitting; if set to zero, idle time will not cause the application to quit
+@property NSInteger quitDelay; // the time in seconds the application will idle before
+@interface SystemEventsApplication (SystemEventsSuite)
+// The System Events application
+*/
+/*
+* System Events Suite
+
+insertion preference
+@property (copy, readonly) SystemEventsInsertionPreference *videoBD; // the video BD
+insertion preference
+@property (copy, readonly) SystemEventsInsertionPreference *videoDVD; // the video DVD
+insertion preference
+@property (copy, readonly) SystemEventsInsertionPreference *pictureCD; // the picture CD
+insertion preference
+@property (copy, readonly) SystemEventsInsertionPreference *musicCD; // the music CD
+insertion preference
+@property (copy, readonly) SystemEventsInsertionPreference *blankBD; // the blank BD
+insertion preference
+@property (copy, readonly) SystemEventsInsertionPreference *blankDVD; // the blank DVD
+insertion preference
+@property (copy, readonly) SystemEventsInsertionPreference *blankCD; // the blank CD
+@interface SystemEventsCDAndDVDPreferencesObject : SBObject <SystemEventsGenericMethods>
+// user's CD and DVD insertion preferences
+@end
+preferences for the current user when a CD or DVD is inserted
+@property (copy) SystemEventsCDAndDVDPreferencesObject *CDAndDVDPreferences; // the
+@interface SystemEventsApplication (CDAndDVDPreferencesSuite)
+// The System Events application
+*/
+/*
+* CD and DVD Preferences Suite
+@end
+@property BOOL darkMode; // use dark menu bar and dock
+@property BOOL smoothScrolling; // Is smooth scrolling used?
+clicking the scroll bar
+@property SystemEventsScrollPageBehaviors scrollBarAction; // the action performed by
+@property NSInteger recentServersLimit; // the number of recent servers to track
+@property NSInteger recentDocumentsLimit; // the number of recent documents to track
+track
+@property NSInteger recentApplicationsLimit; // the number of recent applications to
+lists
+@property (copy) id highlightColor; // color used for hightlighting selected text and
+smoothing fonts
+@property SystemEventsFontSmoothingStyles fontSmoothingStyle; // the method used for
+@property BOOL fontSmoothing; // Is font smoothing on?
+windows
+@property SystemEventsAppearances appearance; // the overall look of buttons, menus and
+<SystemEventsGenericMethods>
+@interface SystemEventsAppearancePreferencesObject : SBObject
+// A collection of appearance preferences
+
+* Dock Preferences Suite
+/*
+@end
+@property SystemEventsDynamicStyle dynamicStyle; // desktop picture dynamic style
+@property BOOL translucentMenuBar; // indicates whether the menu bar is translucent
+@property BOOL randomOrder; // turn on for random ordering of changing desktop pictures
+desktop background
+@property (copy) id picturesFolder; // path to folder containing pictures for changing
+@property NSInteger pictureRotation; // never, using interval, using login, after sleep
+@property (copy) id picture; // path to file used as desktop picture
+desktop appears
+@property (copy, readonly) NSString *displayName; // name of display on which this
+desktop picture
+@property double changeInterval; // number of seconds to wait between changing the
+- (NSInteger) id; // unique identifier of the desktop
+@property (copy, readonly) NSString *name; // name of the desktop
+@interface SystemEventsDesktop : SBObject <SystemEventsGenericMethods>
+// desktop picture settings
+@end
+@property (copy, readonly) SystemEventsDesktop *currentDesktop; // the primary desktop
+- (SBElementArray<SystemEventsDesktop *> *) desktops;
+@interface SystemEventsApplication (DesktopSuite)
+// The System Events application
+*/
+/*
+* Desktop Suite
+@end
+@property SystemEventsDhac insertionAction; // action to perform on media insertion
+of media
+@property (copy) id customScript; // AppleScript to launch or activate on the insertion
+insertion of media
+@property (copy) id customApplication; // application to launch or activate on the
+@interface SystemEventsInsertionPreference : SBObject <SystemEventsGenericMethods>
+// a specific insertion preference
+@end
+
+@end
+@property (copy, readonly) NSString *path; // the file system path to the Login Item
+@property (copy, readonly) NSString *name; // the name of the Login Item
+@property (copy, readonly) NSString *kind; // the file type of the Login Item
+@property BOOL hidden; // Is the Login Item hidden when launched?
+@interface SystemEventsLoginItem : SBObject <SystemEventsGenericMethods>
+// an item to be launched or opened at login
+@end
+- (SBElementArray<SystemEventsLoginItem *> *) loginItems;
+@interface SystemEventsApplication (LoginItemsSuite)
+// The System Events application
+*/
+/*
+* Login Items Suite
+@end
+@property BOOL showRecents; // show recent applications?
+@property BOOL showIndicators; // show indicators for open applications?
+@property SystemEventsDpls screenEdge; // location on screen
+@property BOOL minimizeIntoApplication; // minimize window into its application?
+@property SystemEventsDpef minimizeEffect; // minimization effect
+on (between 0.0 (minimum) and 1.0 (maximum))
+@property double magnificationSize; // maximum magnification size when magnification is
+@property BOOL magnification; // is magnification on or off?
+a title bar
+@property SystemEventsDpbh doubleClickBehavior; // behaviour when double clicking window
+@property BOOL autohideMenuBar; // is autohiding the menu bar on or off?
+(maximum))
+@property double dockSize; // size/height of the items (between 0.0 (minimum) and 1.0
+@property BOOL autohide; // is autohiding the dock on or off?
+@property BOOL animate; // is the animation of opening applications on or off?
+@interface SystemEventsDockPreferencesObject : SBObject <SystemEventsGenericMethods>
+// user's dock preferences
+@end
+for the current user's dock
+@property (copy) SystemEventsDockPreferencesObject *dockPreferences; // the preferences
+@interface SystemEventsApplication (DockPreferencesSuite)
+// The System Events application
+*/
+
+@end
+@property (copy) NSString *name; // the name of the location
+- (NSString *) id; // the unique identifier for the location
+- (SBElementArray<SystemEventsService *> *) services;
+@interface SystemEventsLocation : SBObject <SystemEventsGenericMethods>
+// A set of services
+@end
+@property NSInteger speed; // ethernet speed 10 | 100 | 1000
+@property (copy, readonly) NSString *name; // the name of the interface
+@property NSInteger mtu; // the packet size
+@property (copy, readonly) NSString *MACAddress; // the MAC address for the interface
+@property (copy, readonly) NSString *kind; // the type of interface
+- (NSString *) id; // the unique identifier for the interface
+control
+@property (copy) NSString *duplex; // the duplex setting half | full | full with flow
+automatically?
+@property BOOL automatic; // configure the interface speed, duplex, and mtu
+@interface SystemEventsInterface : SBObject <SystemEventsGenericMethods>
+// A collection of settings for a network interface
+@end
+- (SystemEventsConfiguration *) disconnect; // disconnect a configuration or service
+- (SystemEventsConfiguration *) connect; // connect a configuration or service
+@property (copy, readonly) NSString *name; // the name of the configuration
+- (NSString *) id; // the unique identifier for the configuration
+@property (readonly) BOOL connected; // Is the configuration connected?
+@property (copy) NSString *accountName; // the name used to authenticate
+@interface SystemEventsConfiguration : SBObject <SystemEventsGenericMethods>
+// A collection of settings for configuring a connection
+@end
+preferences for the current user's network
+@property (copy) SystemEventsNetworkPreferencesObject *networkPreferences; // the
+@interface SystemEventsApplication (NetworkPreferencesSuite)
+// The System Events application
+*/
+/*
+* Network Preferences Suite
+
+as displayed to the user
+@property (copy, readonly) NSString *displayedName; // name of the screen saver module
+@interface SystemEventsScreenSaver : SBObject <SystemEventsGenericMethods>
+// an installed screen saver
+@end
+the preferences common to all screen savers
+@property (copy) SystemEventsScreenSaverPreferencesObject *screenSaverPreferences; //
+screen saver
+@property (copy) SystemEventsScreenSaver *currentScreenSaver; // the currently selected
+- (SBElementArray<SystemEventsScreenSaver *> *) screenSavers;
+@interface SystemEventsApplication (ScreenSaverSuite)
+// The System Events application
+*/
+/*
+* Screen Saver Suite
+@end
+- (SystemEventsConfiguration *) disconnect; // disconnect a configuration or service
+- (SystemEventsConfiguration *) connect; // connect a configuration or service
+@property (copy) NSString *name; // the name of the service
+@property (readonly) NSInteger kind; // the type of service
+service is built on
+@property (copy, readonly) SystemEventsInterface *interface; // the interface the
+- (NSString *) id; // the unique identifier for the service
+selected configuration
+@property (copy) SystemEventsConfiguration *currentConfiguration; // the currently
+@property (readonly) BOOL active; // Is the service active?
+- (SBElementArray<SystemEventsConfiguration *> *) configurations;
+@interface SystemEventsService : SBObject <SystemEventsGenericMethods>
+// A collection of settings for a network service
+@end
+@property (copy) SystemEventsLocation *currentLocation; // the current location
+- (SBElementArray<SystemEventsService *> *) services;
+- (SBElementArray<SystemEventsLocation *> *) locations;
+- (SBElementArray<SystemEventsInterface *> *) interfaces;
+@interface SystemEventsNetworkPreferencesObject : SBObject <SystemEventsGenericMethods>
+// the preferences for the current user's network
+
+@property BOOL secureVirtualMemory; // Is secure virtual memory being used?
+from sleep or screen saver?
+@property BOOL requirePasswordToWake; // Is a password required to wake the computer
+preferences?
+@property BOOL requirePasswordToUnlock; // Is a password required to unlock secure
+which the computer will log out
+@property NSInteger logOutWhenInactiveInterval; // The interval of inactivity after
+@property BOOL logOutWhenInactive; // Will the computer log out when inactive?
+@property BOOL automaticLogin; // Is automatic login allowed?
+@interface SystemEventsSecurityPreferencesObject : SBObject <SystemEventsGenericMethods>
+// a collection of security preferences
+@end
+collection of security preferences
+@property (copy) SystemEventsSecurityPreferencesObject *securityPreferences; // a
+@interface SystemEventsApplication (SecuritySuite)
+// The System Events application
+*/
+/*
+* Security Suite
+@end
+- (void) stop; // stop the screen saver
+- (void) start; // start the screen saver
+@property BOOL showClock; // should a clock appear over the screen saver?
+@property (readonly) BOOL running; // is the screen saver running?
+screen?
+@property BOOL mainScreenOnly; // should the screen saver be shown only on the main
+saver starts; zero for never
+@property NSInteger delayInterval; // number of seconds of idle time before the screen
+<SystemEventsGenericMethods>
+@interface SystemEventsScreenSaverPreferencesObject : SBObject
+// screen saver settings
+@end
+- (void) stop; // stop the screen saver
+- (void) start; // start the screen saver
+picture-based screen savers (slideshow, collage, or mosaic)
+@property (copy) NSString *pictureDisplayStyle; // effect to use when displaying
+@property (copy, readonly) SystemEventsAlias *path; // path to the screen saver module
+displayed
+@property (copy, readonly) NSString *name; // name of the screen saver module to be
+
+@property (copy, readonly) SystemEventsFolder *scriptsFolder; // The user's Scripts
+Scripting Additions folder
+@property (copy, readonly) SystemEventsFolder *scriptingAdditionsFolder; // The
+@property (copy, readonly) SystemEventsFolder *publicFolder; // The user's Public folder
+Preferences folder
+@property (copy, readonly) SystemEventsFolder *preferencesFolder; // The user's
+folder
+@property (copy, readonly) SystemEventsFolder *picturesFolder; // The user's Pictures
+collection of folders residing on the Network
+@property (copy, readonly) SystemEventsNetworkDomainObject *networkDomain; // the
+@property (copy, readonly) SystemEventsFolder *musicFolder; // The user's Music folder
+@property (copy, readonly) SystemEventsFolder *moviesFolder; // The user's Movies folder
+of folders residing on the Local machine
+@property (copy, readonly) SystemEventsLocalDomainObject *localDomain; // the collection
+@property (copy, readonly) SystemEventsFolder *libraryFolder; // The Library folder
+currently logged in user
+@property (copy, readonly) SystemEventsFolder *homeFolder; // The Home folder of the
+@property (copy, readonly) SystemEventsFolder *fontsFolder; // The Fonts folder
+Folder Action Scripts folder
+@property (copy, readonly) SystemEventsFolder *FolderActionScriptsFolder; // The user's
+folder
+@property (copy, readonly) SystemEventsFolder *favoritesFolder; // The user's Favorites
+folder
+@property (copy, readonly) SystemEventsFolder *downloadsFolder; // The user's Downloads
+folder
+@property (copy, readonly) SystemEventsFolder *documentsFolder; // The user's Documents
+Pictures folder
+@property (copy, readonly) SystemEventsFolder *desktopPicturesFolder; // The Desktop
+folder
+@property (copy, readonly) SystemEventsFolder *desktopFolder; // The user's Desktop
+collection of folders belonging to the Classic System
+@property (copy, readonly) SystemEventsClassicDomainObject *ClassicDomain; // the
+Applications folder
+@property (copy, readonly) SystemEventsFolder *applicationsFolder; // The user's
+Application Support folder
+@property (copy, readonly) SystemEventsFolder *applicationSupportFolder; // The
+- (SBElementArray<SystemEventsFolder *> *) folders;
+- (SBElementArray<SystemEventsFilePackage *> *) filePackages;
+- (SBElementArray<SystemEventsFile *> *) files;
+- (SBElementArray<SystemEventsDomain *> *) domains;
+- (SBElementArray<SystemEventsDiskItem *> *) diskItems;
+- (SBElementArray<SystemEventsDisk *> *) disks;
+- (SBElementArray<SystemEventsAlias *> *) aliases;
+@interface SystemEventsApplication (DiskFolderFileSuite)
+// The Disk-Folder-File specific extensions to the application
+*/
+/*
+* Disk-Folder-File Suite
+@end
+
+@interface SystemEventsAlias : SystemEventsDiskItem
+// An alias in the file system
+@end
+- (id) moveTo:(id)to; // Move disk item(s) to a new location.
+- (void) delete; // Delete disk item(s).
+resides
+@property (copy, readonly) NSString *volume; // the volume on which the disk item
+@property BOOL visible; // Is the disk item visible?
+@property (copy, readonly) NSString *URL; // the URL of the disk item
+@property (readonly) NSInteger size; // the logical size of the disk item
+disk item
+@property (copy, readonly) NSString *POSIXPath; // the POSIX file system path of the
+on disk
+@property (readonly) NSInteger physicalSize; // the actual space used by the disk item
+@property (copy, readonly) NSString *path; // the file system path of the disk item
+@property (readonly) BOOL packageFolder; // Is the disk item a package?
+@property (copy, readonly) NSString *nameExtension; // the extension portion of the name
+@property (copy) NSString *name; // the name of the disk item
+modified
+@property (copy) NSDate *modificationDate; // the date on which the disk item was last
+- (NSString *) id; // the unique ID of the disk item
+displayed in the User Interface
+@property (copy, readonly) NSString *displayedName; // the name of the disk item as
+created
+@property (copy, readonly) NSDate *creationDate; // the date on which the disk item was
+has this disk item as an element
+@property (copy, readonly) SystemEventsDiskItem *container; // the folder or disk which
+@property (readonly) BOOL busyStatus; // Is the disk item busy?
+@interface SystemEventsDiskItem : SBObject <SystemEventsGenericMethods>
+// An item stored in the file system
+@end
+Workflows folder
+@property (copy, readonly) SystemEventsFolder *workflowsFolder; // The Automator
+@property (copy, readonly) SystemEventsFolder *utilitiesFolder; // The Utilities folder
+of folders belonging to the User
+@property (copy, readonly) SystemEventsUserDomainObject *userDomain; // the collection
+@property (copy, readonly) SystemEventsFolder *trash; // The user's Trash folder
+Items folder
+@property (copy, readonly) SystemEventsFolder *temporaryItemsFolder; // The Temporary
+collection of folders belonging to the System
+@property (copy, readonly) SystemEventsSystemDomainObject *systemDomain; // the
+X was loaded
+@property (copy, readonly) SystemEventsDisk *startupDisk; // the disk from which Mac OS
+Items folder
+@property (copy, readonly) SystemEventsFolder *speakableItemsFolder; // The Speakable
+@property (copy, readonly) SystemEventsFolder *sitesFolder; // The user's Sites folder
+Documents folder
+@property (copy, readonly) SystemEventsFolder *sharedDocumentsFolder; // The Shared
+folder
+
+// A domain in the file system
+@end
+volumes only
+@property (copy, readonly) id zone; // the zone in which the disk's server resides, AFP
+@property (readonly) BOOL startup; // Is this disk the boot disk?
+volumes only
+@property (copy, readonly) id server; // the server on which the disk resides, AFP
+file server)?
+@property (readonly) BOOL localVolume; // Is the media a local volume (as opposed to a
+@property BOOL ignorePrivileges; // Ignore permissions on this disk?
+disk
+@property (copy, readonly) NSNumber *freeSpace; // the number of free bytes left on the
+@property (readonly) SystemEventsEdfm format; // the file system format of this disk
+on)?
+@property (readonly) BOOL ejectable; // Can the media be ejected (floppies, CD's, and so
+used) on the disk
+@property (copy, readonly) NSNumber *capacity; // the total number of bytes (free or
+- (SBElementArray<SystemEventsFolder *> *) folders;
+- (SBElementArray<SystemEventsFilePackage *> *) filePackages;
+- (SBElementArray<SystemEventsFile *> *) files;
+- (SBElementArray<SystemEventsDiskItem *> *) diskItems;
+- (SBElementArray<SystemEventsAlias *> *) aliases;
+@interface SystemEventsDisk : SystemEventsDiskItem
+// A disk in the file system
+@end
+referenced by the alias (visible at the bottom of the "Get Info" window)
+@property (copy, readonly) NSString *version; // the version of the application bundle
+@property (copy, readonly) NSString *typeIdentifier; // The type identifier of the alias
+@property BOOL stationery; // Is the alias a stationery pad?
+application bundle referenced by the alias
+@property (copy, readonly) NSString *shortVersion; // the short version of the
+(visible at the top of the "Get Info" window)
+@property (copy, readonly) NSString *productVersion; // the version of the product
+@property (copy, readonly) NSString *kind; // The kind of alias, as shown in Finder
+the alias
+@property (copy) id fileType; // the OSType identifying the type of data contained in
+is opened
+@property (copy) id defaultApplication; // the application that will launch if the alias
+the alias
+@property (copy) id creatorType; // the OSType identifying the application that created
+- (SBElementArray<SystemEventsFolder *> *) folders;
+- (SBElementArray<SystemEventsFilePackage *> *) filePackages;
+- (SBElementArray<SystemEventsFile *> *) files;
+- (SBElementArray<SystemEventsDiskItem *> *) diskItems;
+- (SBElementArray<SystemEventsAlias *> *) aliases;
+
+@property (copy, readonly) SystemEventsFolder *startupItemsFolder; // The StartupItems
+folder
+@property (copy, readonly) SystemEventsFolder *shutdownFolder; // The Shutdown Items
+Preferences folder
+@property (copy, readonly) SystemEventsFolder *preferencesFolder; // The Classic
+Items folder
+@property (copy, readonly) SystemEventsFolder *launcherItemsFolder; // The Launcher
+@property (copy, readonly) SystemEventsFolder *fontsFolder; // The Fonts folder
+folder
+@property (copy, readonly) SystemEventsFolder *extensionsFolder; // The Extensions
+folder
+@property (copy, readonly) SystemEventsFolder *desktopFolder; // The Classic Desktop
+Strip Modules folder
+@property (copy, readonly) SystemEventsFolder *controlStripModulesFolder; // The Control
+Panels folder
+@property (copy, readonly) SystemEventsFolder *controlPanelsFolder; // The Control
+folder
+@property (copy, readonly) SystemEventsFolder *appleMenuFolder; // The Apple Menu Items
+- (SBElementArray<SystemEventsFolder *> *) folders;
+@interface SystemEventsClassicDomainObject : SystemEventsDomain
+// The Classic domain in the file system
+@end
+Workflows folder
+@property (copy, readonly) SystemEventsFolder *workflowsFolder; // The Automator
+@property (copy, readonly) SystemEventsFolder *utilitiesFolder; // The Utilities folder
+Items folder
+@property (copy, readonly) SystemEventsFolder *speakableItemsFolder; // The Speakable
+Documents folder
+@property (copy, readonly) SystemEventsFolder *sharedDocumentsFolder; // The Shared
+@property (copy, readonly) SystemEventsFolder *scriptsFolder; // The Scripts folder
+Scripting Additions folder
+@property (copy, readonly) SystemEventsFolder *scriptingAdditionsFolder; // The
+folder
+@property (copy, readonly) SystemEventsFolder *preferencesFolder; // The Preferences
+@property (copy, readonly) NSString *name; // the name of the domain
+@property (copy, readonly) SystemEventsFolder *libraryFolder; // The Library folder
+- (NSString *) id; // the unique identifier of the domain
+@property (copy, readonly) SystemEventsFolder *fontsFolder; // The Fonts folder
+Action Scripts folder
+@property (copy, readonly) SystemEventsFolder *FolderActionScriptsFolder; // The Folder
+Pictures folder
+@property (copy, readonly) SystemEventsFolder *desktopPicturesFolder; // The Desktop
+folder
+@property (copy, readonly) SystemEventsFolder *applicationsFolder; // The Applications
+Application Support folder
+@property (copy, readonly) SystemEventsFolder *applicationSupportFolder; // The
+- (SBElementArray<SystemEventsFolder *> *) folders;
+@interface SystemEventsDomain : SBObject <SystemEventsGenericMethods>
+
+@interface SystemEventsLocalDomainObject : SystemEventsDomain
+// The local domain in the file system
+@end
+- (SBElementArray<SystemEventsFolder *> *) folders;
+- (SBElementArray<SystemEventsFilePackage *> *) filePackages;
+- (SBElementArray<SystemEventsFile *> *) files;
+- (SBElementArray<SystemEventsDiskItem *> *) diskItems;
+- (SBElementArray<SystemEventsAlias *> *) aliases;
+@interface SystemEventsFolder : SystemEventsDiskItem
+// A folder in the file system
+@end
+- (SBElementArray<SystemEventsFolder *> *) folders;
+- (SBElementArray<SystemEventsFilePackage *> *) filePackages;
+- (SBElementArray<SystemEventsFile *> *) files;
+- (SBElementArray<SystemEventsDiskItem *> *) diskItems;
+- (SBElementArray<SystemEventsAlias *> *) aliases;
+@interface SystemEventsFilePackage : SystemEventsFile
+// A file package in the file system
+@end
+- (SystemEventsFile *) open; // Open disk item(s) with the appropriate application.
+- (id) open; // Open a document.
+bottom of the "Get Info" window)
+@property (copy, readonly) NSString *version; // the version of the file (visible at the
+@property (copy, readonly) NSString *typeIdentifier; // The type identifier of the file
+@property BOOL stationery; // Is the file a stationery pad?
+@property (copy, readonly) NSString *shortVersion; // the short version of the file
+(visible at the top of the "Get Info" window)
+@property (copy, readonly) NSString *productVersion; // the version of the product
+@property (copy, readonly) NSString *kind; // The kind of file, as shown in Finder
+the file
+@property (copy) id fileType; // the OSType identifying the type of data contained in
+is opened
+@property (copy) id defaultApplication; // the application that will launch if the file
+the file
+@property (copy) id creatorType; // the OSType identifying the application that created
+@interface SystemEventsFile : SystemEventsDiskItem
+// A file in the file system
+@end
+@property (copy, readonly) SystemEventsFolder *systemFolder; // The System folder
+folder
+
+@interface SystemEventsApplication (FolderActionsSuite)
+*/
+/*
+* Folder Actions Suite
+@end
+Items folder
+@property (copy, readonly) SystemEventsFolder *temporaryItemsFolder; // The Temporary
+@property (copy, readonly) SystemEventsFolder *sitesFolder; // The user's Sites folder
+@property (copy, readonly) SystemEventsFolder *publicFolder; // The user's Public folder
+folder
+@property (copy, readonly) SystemEventsFolder *picturesFolder; // The user's Pictures
+@property (copy, readonly) SystemEventsFolder *musicFolder; // The user's Music folder
+@property (copy, readonly) SystemEventsFolder *moviesFolder; // The user's Movies folder
+@property (copy, readonly) SystemEventsFolder *homeFolder; // The user's Home folder
+folder
+@property (copy, readonly) SystemEventsFolder *favoritesFolder; // The user's Favorites
+folder
+@property (copy, readonly) SystemEventsFolder *downloadsFolder; // The user's Downloads
+folder
+@property (copy, readonly) SystemEventsFolder *documentsFolder; // The user's Documents
+folder
+@property (copy, readonly) SystemEventsFolder *desktopFolder; // The user's Desktop
+- (SBElementArray<SystemEventsFolder *> *) folders;
+@interface SystemEventsUserDomainObject : SystemEventsDomain
+// The user domain in the file system
+@end
+- (SBElementArray<SystemEventsFolder *> *) folders;
+@interface SystemEventsSystemDomainObject : SystemEventsDomain
+// The system domain in the file system
+@end
+- (SBElementArray<SystemEventsFolder *> *) folders;
+@interface SystemEventsNetworkDomainObject : SystemEventsDomain
+// The network domain in the file system
+@end
+- (SBElementArray<SystemEventsFolder *> *) folders;
+
+@end
+processed?
+@property (readonly) BOOL UIElementsEnabled; // Are UI element events currently being
+- (SBElementArray<SystemEventsUIElement *> *) UIElements;
+- (SBElementArray<SystemEventsProcess *> *) processes;
+- (SBElementArray<SystemEventsDeskAccessoryProcess *> *) deskAccessoryProcesses;
+- (SBElementArray<SystemEventsApplicationProcess *> *) applicationProcesses;
+@interface SystemEventsApplication (ProcessesSuite)
+// The System Events application
+*/
+/*
+* Processes Suite
+@end
+disk
+@property (copy, readonly) NSString *POSIXPath; // the POSIX file system path of the
+@property (copy, readonly) NSString *path; // the file system path of the disk
+@property (copy, readonly) NSString *name; // the name of the script
+@property BOOL enabled; // Is the script enabled?
+@interface SystemEventsScript : SBObject <SystemEventsGenericMethods>
+// A script invoked by a folder action
+@end
+folder action.
+- (void) enableProcessNewChanges:(SystemEventsSaveOptions)processNewChanges; // Enable a
+the folder action applies resides
+@property (copy, readonly) NSString *volume; // the volume on which the folder to which
+action applies
+@property (copy, readonly) NSString *path; // the path to the folder to which the folder
+name of the folder
+@property (copy) NSString *name; // the name of the folder action, which is also the
+@property BOOL enabled; // Is the folder action enabled?
+- (SBElementArray<SystemEventsScript *> *) scripts;
+@interface SystemEventsFolderAction : SBObject <SystemEventsGenericMethods>
+// An action attached to a folder in the file system
+@end
+@property BOOL folderActionsEnabled; // Are Folder Actions currently being processed?
+- (SBElementArray<SystemEventsFolderAction *> *) folderActions;
+
+- (SBElementArray<SystemEventsScrollBar *> *) scrollBars;
+- (SBElementArray<SystemEventsScrollArea *> *) scrollAreas;
+- (SBElementArray<SystemEventsRow *> *) rows;
+- (SBElementArray<SystemEventsRelevanceIndicator *> *) relevanceIndicators;
+- (SBElementArray<SystemEventsRadioGroup *> *) radioGroups;
+- (SBElementArray<SystemEventsRadioButton *> *) radioButtons;
+- (SBElementArray<SystemEventsProgressIndicator *> *) progressIndicators;
+- (SBElementArray<SystemEventsPopUpButton *> *) popUpButtons;
+- (SBElementArray<SystemEventsPopOver *> *) popOvers;
+- (SBElementArray<SystemEventsOutline *> *) outlines;
+- (SBElementArray<SystemEventsMenuItem *> *) menuItems;
+- (SBElementArray<SystemEventsMenuButton *> *) menuButtons;
+- (SBElementArray<SystemEventsMenuBarItem *> *) menuBarItems;
+- (SBElementArray<SystemEventsMenuBar *> *) menuBars;
+- (SBElementArray<SystemEventsMenu *> *) menus;
+- (SBElementArray<NSArray *> *) lists;
+- (SBElementArray<SystemEventsIncrementor *> *) incrementors;
+- (SBElementArray<SystemEventsImage *> *) images;
+- (SBElementArray<SystemEventsGrowArea *> *) growAreas;
+- (SBElementArray<SystemEventsGroup *> *) groups;
+- (SBElementArray<SystemEventsDrawer *> *) drawers;
+- (SBElementArray<SystemEventsComboBox *> *) comboBoxes;
+- (SBElementArray<SystemEventsColumn *> *) columns;
+- (SBElementArray<SystemEventsColorWell *> *) colorWells;
+- (SBElementArray<SystemEventsCheckbox *> *) checkboxes;
+- (SBElementArray<SystemEventsButton *> *) buttons;
+- (SBElementArray<SystemEventsBusyIndicator *> *) busyIndicators;
+- (SBElementArray<SystemEventsBrowser *> *) browsers;
+- (SBElementArray<SystemEventsAttribute *> *) attributes;
+- (SBElementArray<SystemEventsAction *> *) actions;
+@interface SystemEventsUIElement : SBObject <SystemEventsGenericMethods>
+// A piece of the user interface of a process
+@end
+@property (copy) id value; // the current value of the attribute
+@property (readonly) BOOL settable; // Can the attribute be set?
+@property (copy, readonly) NSString *name; // the name of the attribute
+@interface SystemEventsAttribute : SBObject <SystemEventsGenericMethods>
+// An named data value associated with the UI element
+@end
+were applied to its UI element
+- (SystemEventsAction *) perform; // cause the target process to behave as if the action
+@property (copy, readonly) NSString *name; // the name of the action
+@property (copy, readonly) NSString *objectDescription; // what the action does
+@interface SystemEventsAction : SBObject <SystemEventsGenericMethods>
+// An action that can be performed on the UI element
+
+@interface SystemEventsBrowser : SystemEventsUIElement
+// A browser belonging to a window
+@end
+- (SystemEventsUIElement *) select; // set the selected property of the UI element
+the UI element were clicked
+- (id) clickAt:(NSArray<NSNumber *> *)at; // cause the target process to behave as if
+@property (copy) id value; // the current value of the UI element
+on the screen
+@property (copy, readonly) NSString *title; // the title of the UI element as it appears
+its capabilities
+@property (copy, readonly) id subrole; // an encoded description of the UI element and
+@property (copy) id size; // the size of the UI element
+@property (copy) id selected; // Is the UI element selected?
+the UI element's role
+@property (copy, readonly) NSString *roleDescription; // a more complete description of
+and its capabilities
+@property (copy, readonly) NSString *role; // an encoded description of the UI element
+@property (copy) id position; // the position of the UI element
+@property (copy, readonly) id orientation; // the orientation of the UI element
+identifies it within its container
+@property (copy, readonly) NSString *name; // the name of the UI Element, which
+take on
+@property (copy, readonly) id minimumValue; // the minimum value that the UI element can
+take on
+@property (copy, readonly) id maximumValue; // the maximum value that the UI element can
+its capabilities
+@property (copy, readonly) id help; // an elaborate description of the UI element and
+@property (copy) id focused; // Is the focus on this UI element?
+element contained in this UI element and its child UI elements, to the limits of the tree
+@property (copy, readonly) NSArray<SBObject *> *entireContents; // a list of every UI
+clicks? )
+@property (copy, readonly) id enabled; // Is the UI element enabled? ( Does it accept
+available; otherwise, the role description
+@property (copy, readonly) id objectDescription; // the accessibility description, if
+of the UI element and its capabilities
+@property (copy, readonly) id accessibilityDescription; // a more complete description
+- (SBElementArray<SystemEventsWindow *> *) windows;
+- (SBElementArray<SystemEventsValueIndicator *> *) valueIndicators;
+- (SBElementArray<SystemEventsUIElement *> *) UIElements;
+- (SBElementArray<SystemEventsToolbar *> *) toolbars;
+- (SBElementArray<SystemEventsTextField *> *) textFields;
+- (SBElementArray<SystemEventsTextArea *> *) textAreas;
+- (SBElementArray<SystemEventsTable *> *) tables;
+- (SBElementArray<SystemEventsTabGroup *> *) tabGroups;
+- (SBElementArray<SystemEventsStaticText *> *) staticTexts;
+- (SBElementArray<SystemEventsSplitterGroup *> *) splitterGroups;
+- (SBElementArray<SystemEventsSplitter *> *) splitters;
+- (SBElementArray<SystemEventsSlider *> *) sliders;
+- (SBElementArray<SystemEventsSheet *> *) sheets;
+
+@interface SystemEventsGrowArea : SystemEventsUIElement
+// A grow area belonging to a window
+@end
+- (SBElementArray<SystemEventsStaticText *> *) staticTexts;
+- (SBElementArray<SystemEventsCheckbox *> *) checkboxes;
+@interface SystemEventsGroup : SystemEventsUIElement
+// A group belonging to a window
+@end
+@interface SystemEventsDrawer : SystemEventsUIElement
+// A drawer that may be extended from a window
+@end
+@interface SystemEventsComboBox : SystemEventsUIElement
+// A combo box belonging to a window
+@end
+@interface SystemEventsColumn : SystemEventsUIElement
+// A column belonging to a table
+@end
+@interface SystemEventsColorWell : SystemEventsUIElement
+// A color well belonging to a window
+@end
+@interface SystemEventsCheckbox : SystemEventsUIElement
+// A checkbox belonging to a window
+@end
+@interface SystemEventsButton : SystemEventsUIElement
+// A button belonging to a window or scroll bar
+@end
+@interface SystemEventsBusyIndicator : SystemEventsUIElement
+// A busy indicator belonging to a window
+@end
+
+@interface SystemEventsMenuItem : SystemEventsUIElement
+// A menu item belonging to a menu
+@end
+@interface SystemEventsMenuButton : SystemEventsUIElement
+// A menu button belonging to a window
+@end
+- (SBElementArray<SystemEventsMenu *> *) menus;
+@interface SystemEventsMenuBarItem : SystemEventsUIElement
+// A menu bar item belonging to a menu bar
+@end
+- (SBElementArray<SystemEventsMenuBarItem *> *) menuBarItems;
+- (SBElementArray<SystemEventsMenu *> *) menus;
+@interface SystemEventsMenuBar : SystemEventsUIElement
+// A menu bar belonging to a process
+@end
+- (SBElementArray<SystemEventsMenuItem *> *) menuItems;
+@interface SystemEventsMenu : SystemEventsUIElement
+// A menu belonging to a menu bar item
+@end
+@interface SystemEventsList : SystemEventsUIElement
+// A list belonging to a window
+@end
+@interface SystemEventsIncrementor : SystemEventsUIElement
+// A incrementor belonging to a window
+@end
+@interface SystemEventsImage : SystemEventsUIElement
+// An image belonging to a static text field
+@end
+
+@property (copy, readonly) id shortName; // the short name of the file from which the
+in the process' partition
+@property (readonly) NSInteger partitionSpaceUsed; // the number of bytes currently used
+@property (copy, readonly) NSString *name; // the name of the process
+- (NSInteger) id; // The unique identifier of the process
+terminology, i.e., can it be scripted?
+@property (readonly) BOOL hasScriptingTerminology; // Does the process have a scripting
+@property BOOL frontmost; // Is the process the frontmost process
+process
+@property (copy, readonly) NSString *fileType; // the OSType of the file type of the
+@property (copy, readonly) id file; // the file from which the process was launched
+the process was launched, as displayed in the User Interface
+@property (copy, readonly) NSString *displayedName; // the name of the file from which
+process (the signature)
+@property (copy, readonly) NSString *creatorType; // the OSType of the creator of the
+@property (readonly) BOOL Classic; // Is the process running in the Classic environment?
+process' application file
+@property (copy, readonly) NSString *bundleIdentifier; // the bundle identifier of the
+background?
+@property (readonly) BOOL backgroundOnly; // Does the process run exclusively in the
+process is running
+@property (copy, readonly) NSString *architecture; // the architecture in which the
+@property (readonly) BOOL acceptsRemoteEvents; // Does the process accept remote events?
+aware (accepts open application, open document, print document, and quit)?
+@property (readonly) BOOL acceptsHighLevelEvents; // Is the process high-level event
+- (SBElementArray<SystemEventsWindow *> *) windows;
+- (SBElementArray<SystemEventsMenuBar *> *) menuBars;
+@interface SystemEventsProcess : SystemEventsUIElement
+// A process running on this computer
+@end
+@interface SystemEventsPopUpButton : SystemEventsUIElement
+// A pop up button belonging to a window
+@end
+@interface SystemEventsPopOver : SystemEventsUIElement
+// A pop over belonging to a window
+@end
+@interface SystemEventsOutline : SystemEventsUIElement
+// A outline belonging to a window
+@end
+- (SBElementArray<SystemEventsMenu *> *) menus;
+
+// A row belonging to a table
+@end
+@interface SystemEventsRelevanceIndicator : SystemEventsUIElement
+// A relevance indicator belonging to a window
+@end
+- (SBElementArray<SystemEventsRadioButton *> *) radioButtons;
+@interface SystemEventsRadioGroup : SystemEventsUIElement
+// A radio button group belonging to a window
+@end
+@interface SystemEventsRadioButton : SystemEventsUIElement
+// A radio button belonging to a window
+@end
+@interface SystemEventsProgressIndicator : SystemEventsUIElement
+// A progress indicator belonging to a window
+@end
+desk accessory file from which this process was launched
+@property (copy, readonly) SystemEventsAlias *deskAccessoryFile; // a reference to the
+@interface SystemEventsDeskAccessoryProcess : SystemEventsProcess
+// A process launched from an desk accessory file
+@end
+from which this process was launched
+@property (copy, readonly) id applicationFile; // a reference to the application file
+@interface SystemEventsApplicationProcess : SystemEventsProcess
+// A process launched from an application file
+@end
+@property BOOL visible; // Is the process' layer visible?
+running in the native environment, or -1 for a process running in the Classic environment
+@property (readonly) NSInteger unixId; // The Unix process identifier of a process
+which the process was launched
+@property (readonly) NSInteger totalPartitionSize; // the size of the partition with
+process was launched
+
+@interface SystemEventsTabGroup : SystemEventsUIElement
+// A tab group belonging to a window
+@end
+- (SBElementArray<SystemEventsImage *> *) images;
+@interface SystemEventsStaticText : SystemEventsUIElement
+// A static text field belonging to a window
+@end
+@interface SystemEventsSplitterGroup : SystemEventsUIElement
+// A splitter group belonging to a window
+@end
+@interface SystemEventsSplitter : SystemEventsUIElement
+// A splitter belonging to a window
+@end
+@interface SystemEventsSlider : SystemEventsUIElement
+// A slider belonging to a window
+@end
+@interface SystemEventsSheet : SystemEventsUIElement
+// A sheet displayed over a window
+@end
+- (SBElementArray<SystemEventsValueIndicator *> *) valueIndicators;
+- (SBElementArray<SystemEventsButton *> *) buttons;
+@interface SystemEventsScrollBar : SystemEventsUIElement
+// A scroll bar belonging to a window
+@end
+@interface SystemEventsScrollArea : SystemEventsUIElement
+// A scroll area belonging to a window
+@end
+@interface SystemEventsRow : SystemEventsUIElement
+
+- (SBElementArray<SystemEventsProgressIndicator *> *) progressIndicators;
+- (SBElementArray<SystemEventsPopUpButton *> *) popUpButtons;
+- (SBElementArray<SystemEventsPopOver *> *) popOvers;
+- (SBElementArray<SystemEventsOutline *> *) outlines;
+- (SBElementArray<SystemEventsMenuButton *> *) menuButtons;
+- (SBElementArray<NSArray *> *) lists;
+- (SBElementArray<SystemEventsIncrementor *> *) incrementors;
+- (SBElementArray<SystemEventsImage *> *) images;
+- (SBElementArray<SystemEventsGrowArea *> *) growAreas;
+- (SBElementArray<SystemEventsGroup *> *) groups;
+- (SBElementArray<SystemEventsDrawer *> *) drawers;
+- (SBElementArray<SystemEventsComboBox *> *) comboBoxes;
+- (SBElementArray<SystemEventsColorWell *> *) colorWells;
+- (SBElementArray<SystemEventsCheckbox *> *) checkboxes;
+- (SBElementArray<SystemEventsButton *> *) buttons;
+- (SBElementArray<SystemEventsBusyIndicator *> *) busyIndicators;
+- (SBElementArray<SystemEventsBrowser *> *) browsers;
+- (SBElementArray<SystemEventsAttribute *> *) attributes;
+- (SBElementArray<SystemEventsAction *> *) actions;
+@interface SystemEventsWindow (ProcessesSuite)
+// A window belonging to a process
+@end
+@interface SystemEventsValueIndicator : SystemEventsUIElement
+// A value indicator ( thumb or slider ) belonging to a scroll bar
+@end
+@interface SystemEventsToolbar : SystemEventsUIElement
+// A toolbar belonging to a window
+@end
+@interface SystemEventsTextField : SystemEventsUIElement
+// A text field belonging to a window
+@end
+@interface SystemEventsTextArea : SystemEventsUIElement
+// A text area belonging to a window
+@end
+@interface SystemEventsTable : SystemEventsUIElement
+// A table belonging to a window
+@end
+
+*/
+/*
+* Property List Suite
+@end
+@property (copy) id value; // the current value of the window
+the screen
+@property (copy, readonly) NSString *title; // the title of the window as it appears on
+capabilities
+@property (copy, readonly) id subrole; // an encoded description of the window and its
+@property (copy) id size; // the size of the window
+@property (copy) id selected; // Is the window selected?
+the window's role
+@property (copy, readonly) NSString *roleDescription; // a more complete description of
+its capabilities
+@property (copy, readonly) NSString *role; // an encoded description of the window and
+@property (copy) id position; // the position of the window
+@property (copy, readonly) id orientation; // the orientation of the window
+it within its container
+@property (copy, readonly) NSString *name; // the name of the window, which identifies
+take on
+@property (copy, readonly) id minimumValue; // the minimum value that the UI element can
+take on
+@property (copy, readonly) id maximumValue; // the maximum value that the UI element can
+capabilities
+@property (copy, readonly) id help; // an elaborate description of the window and its
+@property (copy) id focused; // Is the focus on this window?
+element contained in this window and its child UI elements, to the limits of the tree
+@property (copy, readonly) NSArray<SBObject *> *entireContents; // a list of every UI
+clicks? )
+@property (copy, readonly) id enabled; // Is the window enabled? ( Does it accept
+available; otherwise, the role description
+@property (copy, readonly) id objectDescription; // the accessibility description, if
+of the window and its capabilities
+@property (copy, readonly) id accessibilityDescription; // a more complete description
+- (SBElementArray<SystemEventsUIElement *> *) UIElements;
+- (SBElementArray<SystemEventsToolbar *> *) toolbars;
+- (SBElementArray<SystemEventsTextField *> *) textFields;
+- (SBElementArray<SystemEventsTextArea *> *) textAreas;
+- (SBElementArray<SystemEventsTable *> *) tables;
+- (SBElementArray<SystemEventsTabGroup *> *) tabGroups;
+- (SBElementArray<SystemEventsStaticText *> *) staticTexts;
+- (SBElementArray<SystemEventsSplitterGroup *> *) splitterGroups;
+- (SBElementArray<SystemEventsSplitter *> *) splitters;
+- (SBElementArray<SystemEventsSlider *> *) sliders;
+- (SBElementArray<SystemEventsSheet *> *) sheets;
+- (SBElementArray<SystemEventsScrollBar *> *) scrollBars;
+- (SBElementArray<SystemEventsScrollArea *> *) scrollAreas;
+- (SBElementArray<SystemEventsRelevanceIndicator *> *) relevanceIndicators;
+- (SBElementArray<SystemEventsRadioGroup *> *) radioGroups;
+- (SBElementArray<SystemEventsRadioButton *> *) radioButtons;
+
+@property (copy) id value; // the value of the XML attribute
+@property (copy, readonly) NSString *name; // the name of the XML attribute
+@interface SystemEventsXMLAttribute : SBObject <SystemEventsGenericMethods>
+// A named value associated with a unit of data in XML format
+@end
+- (SBElementArray<SystemEventsXMLFile *> *) XMLFiles;
+- (SBElementArray<SystemEventsXMLData *> *) XMLDatas;
+@interface SystemEventsApplication (XMLSuite)
+// The System Events application
+*/
+/*
+* XML Suite
+@end
+@property (copy) id value; // the value of the property list item
+@property (copy) NSString *text; // the text representation of the property list data
+any )
+@property (copy, readonly) NSString *name; // the name of the property list item ( if
+list item: boolean/data/date/list/number/record/string
+@property (copy, readonly) NSNumber *kind; // the kind of data stored in the property
+- (SBElementArray<SystemEventsPropertyListItem *> *) propertyListItems;
+@interface SystemEventsPropertyListItem : SBObject <SystemEventsGenericMethods>
+// A unit of data in Property List format
+@end
+were elements and properties of the property list file
+list file; elements and properties of the property list item may be accessed as if they
+@property (copy) SystemEventsPropertyListItem *contents; // the contents of the property
+@interface SystemEventsPropertyListFile : SystemEventsFile
+// A file containing data in Property List format
+@end
+- (SBElementArray<SystemEventsPropertyListItem *> *) propertyListItems;
+- (SBElementArray<SystemEventsPropertyListFile *> *) propertyListFiles;
+@interface SystemEventsApplication (PropertyListSuite)
+// The System Events application
+
+@property (copy) NSString *faxNumber; // for fax number
+@property SystemEventsEnum errorHandling; // how errors are handled
+should print the document
+@property (copy) NSDate *requestedPrintTime; // the time at which the desktop printer
+@property NSInteger pagesDown; // number of logical pages laid out down a physical page
+@property NSInteger pagesAcross; // number of logical pages laid across a physical page
+@property NSInteger endingPage; // the last page of the document to be printed
+@property NSInteger startingPage; // the first page of the document to be printed
+@property BOOL collating; // Should printed copies be collated?
+@property NSInteger copies; // the number of copies of a document to be printed
+@interface SystemEventsPrintSettings : SBObject <SystemEventsGenericMethods>
+*/
+/*
+* Type Definitions
+@end
+properties of the XML file
+elements and properties of the XML data may be accessed as if they were elements and
+@property (copy) SystemEventsXMLData *contents; // the contents of the XML file;
+@interface SystemEventsXMLFile : SystemEventsFile
+// A file containing data in XML format
+@end
+@property (copy) id value; // the value of the XML element
+@property (copy, readonly) NSString *name; // the name of the XML element
+- (NSString *) id; // the unique identifier of the XML element
+- (SBElementArray<SystemEventsXMLElement *> *) XMLElements;
+- (SBElementArray<SystemEventsXMLAttribute *> *) XMLAttributes;
+@interface SystemEventsXMLElement : SBObject <SystemEventsGenericMethods>
+// A unit of data in XML format
+@end
+@property (copy) NSString *text; // the text representation of the XML data
+@property (copy) NSString *name; // the name of the XML data
+- (NSString *) id; // the unique identifier of the XML data
+- (SBElementArray<SystemEventsXMLElement *> *) XMLElements;
+@interface SystemEventsXMLData : SBObject <SystemEventsGenericMethods>
+// Data in XML format
+@end
+
+command belongs
+@property (copy, readonly) NSString *suiteName; // The name of the suite to which this
+object or data returned by this command
+@property (copy, readonly) SystemEventsScriptingResultObject *scriptingResult; // The
+@property (readonly) BOOL hidden; // Is the command hidden?
+direct parameter of the command
+@property (copy, readonly) SystemEventsScriptingParameter *directParameter; // The
+command
+@property (copy, readonly) NSString *objectDescription; // The description of the
+- (NSString *) id; // The unique identifier of the command
+@property (copy, readonly) NSString *name; // The name of the command
+- (SBElementArray<SystemEventsScriptingParameter *> *) scriptingParameters;
+@interface SystemEventsScriptingCommand : SBObject <SystemEventsGenericMethods>
+// A command within a suite within a scripting definition
+@end
+which this class inherits
+@property (copy, readonly) SystemEventsScriptingClass *superclass; // The class from
+class belongs
+@property (copy, readonly) NSString *suiteName; // The name of the suite to which this
+@property (copy, readonly) NSString *pluralName; // The plural name of the class
+@property (readonly) BOOL hidden; // Is the class hidden?
+@property (copy, readonly) NSString *objectDescription; // The description of the class
+- (NSString *) id; // The unique identifier of the class
+@property (copy, readonly) NSString *name; // The name of the class
+- (SBElementArray<SystemEventsScriptingProperty *> *) scriptingProperties;
+- (SBElementArray<SystemEventsScriptingElement *> *) scriptingElements;
+@interface SystemEventsScriptingClass : SBObject <SystemEventsGenericMethods>
+// A class within a suite within a scripting definition
+@end
+*scriptingDefinition; // The scripting definition of the System Events application
+@property (copy, readonly) SystemEventsScriptingDefinitionObject
+@interface SystemEventsApplication (ScriptingDefinitionSuite)
+// The System Events application
+*/
+/*
+* Scripting Definition Suite
+@end
+@property (copy) NSString *targetPrinter; // for target printer
+
+@end
+@property (readonly) BOOL optional; // Is the parameter optional?
+this parameter
+@property (copy, readonly) NSString *kind; // The kind of object or data specified by
+@property (readonly) BOOL hidden; // Is the parameter hidden?
+parameter
+@property (copy, readonly) NSString *objectDescription; // The description of the
+- (NSString *) id; // The unique identifier of the parameter
+@property (copy, readonly) NSString *name; // The name of the parameter
+@interface SystemEventsScriptingParameter : SBObject <SystemEventsGenericMethods>
+// A parameter within a command within a suite within a scripting definition
+@end
+@property (readonly) BOOL hidden; // Is the enumerator hidden?
+enumerator
+@property (copy, readonly) NSString *objectDescription; // The description of the
+- (NSString *) id; // The unique identifier of the enumerator
+@property (copy, readonly) NSString *name; // The name of the enumerator
+@interface SystemEventsScriptingEnumerator : SBObject <SystemEventsGenericMethods>
+// An enumerator within an enumeration within a suite within a scripting definition
+@end
+@property (readonly) BOOL hidden; // Is the enumeration hidden?
+- (NSString *) id; // The unique identifier of the enumeration
+@property (copy, readonly) NSString *name; // The name of the enumeration
+- (SBElementArray<SystemEventsScriptingEnumerator *> *) scriptingEnumerators;
+@interface SystemEventsScriptingEnumeration : SBObject <SystemEventsGenericMethods>
+// An enumeration within a suite within a scripting definition
+@end
+@interface SystemEventsScriptingElement : SystemEventsScriptingClass
+// An element within a class within a suite within a scripting definition
+@end
+- (SBElementArray<SystemEventsScriptingSuite *> *) scriptingSuites;
+@interface SystemEventsScriptingDefinitionObject : SBObject <SystemEventsGenericMethods>
+// The scripting definition of the System Events applicaation
+@end
+
+@end
+@property (readonly) BOOL hidden; // Is the suite hidden?
+@property (copy, readonly) NSString *objectDescription; // The description of the suite
+- (NSString *) id; // The unique identifier of the suite
+@property (copy, readonly) NSString *name; // The name of the suite
+- (SBElementArray<SystemEventsScriptingEnumeration *> *) scriptingEnumerations;
+- (SBElementArray<SystemEventsScriptingClass *> *) scriptingClasses;
+- (SBElementArray<SystemEventsScriptingCommand *> *) scriptingCommands;
+@interface SystemEventsScriptingSuite : SBObject <SystemEventsGenericMethods>
+// A suite within a scripting definition
+@end
+@property (readonly) BOOL listed; // Is the scripting result's value a list?
+this property
+@property (copy, readonly) NSString *kind; // The kind of object or data returned by
+@property (readonly) BOOL enumerated; // Is the scripting result's value an enumerator?
+property
+@property (copy, readonly) NSString *objectDescription; // The description of the
+@interface SystemEventsScriptingResultObject : SBObject <SystemEventsGenericMethods>
+// The result of a command within a suite within a scripting definition
+@end
+@property (readonly) BOOL listed; // Is the property's value a list?
+this property
+@property (copy, readonly) NSString *kind; // The kind of object or data returned by
+@property (readonly) BOOL hidden; // Is the property hidden?
+@property (readonly) BOOL enumerated; // Is the property's value an enumerator?
+property
+@property (copy, readonly) NSString *objectDescription; // The description of the
+@property (readonly) SystemEventsAccs access; // The type of access to this property
+- (NSString *) id; // The unique identifier of the property
+@property (copy, readonly) NSString *name; // The name of the property
+@interface SystemEventsScriptingProperty : SBObject <SystemEventsGenericMethods>
+// A property within a class within a suite within a scripting definition
+

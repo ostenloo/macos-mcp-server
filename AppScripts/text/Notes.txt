@@ -1,0 +1,140 @@
+- (SBElementArray<NotesWindow *> *) windows;
+- (SBElementArray<NotesDocument *> *) documents;
+@interface NotesApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+@end
+- (void) moveTo:(SBObject *)to; // Move an object to a new location.
+Copy an object.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties; //
+- (void) delete; // Delete an object.
+(BOOL)printDialog; // Print a document.
+- (void) printWithProperties:(NSDictionary *)withProperties printDialog:
+- (void) saveIn:(NSURL *)in_ as:(NotesSaveableFileFormat)as; // Save a document.
+document.
+- (void) closeSaving:(NotesSaveOptions)saving savingIn:(NSURL *)savingIn; // Close a
+@protocol NotesGenericMethods
+typedef enum NotesSaveableFileFormat NotesSaveableFileFormat;
+};
+NotesSaveableFileFormatNativeFormat = 'item' /* Native format */
+enum NotesSaveableFileFormat {
+typedef enum NotesPrintingErrorHandling NotesPrintingErrorHandling;
+};
+errors */
+NotesPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of PostScript
+NotesPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error handling */,
+enum NotesPrintingErrorHandling {
+typedef enum NotesSaveOptions NotesSaveOptions;
+};
+NotesSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file. */
+NotesSaveOptionsNo = 'no ' /* Do not save the file. */,
+NotesSaveOptionsYes = 'yes ' /* Save the file. */,
+enum NotesSaveOptions {
+NotesNote, NotesAttachment;
+@class NotesApplication, NotesDocument, NotesWindow, NotesAccount, NotesFolder,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+* Notes.h
+/*
+
+- (SBElementArray<NotesFolder *> *) folders;
+- (SBElementArray<NotesAccount *> *) accounts;
+@interface NotesApplication (NotesSuite)
+// the Notes application
+*/
+/*
+* Notes Suite
+@end
+displayed in the window.
+@property (copy, readonly) NotesDocument *document; // The document whose contents are
+@property BOOL zoomed; // Is the window zoomed right now?
+@property (readonly) BOOL zoomable; // Does the window have a zoom button?
+@property BOOL visible; // Is the window visible right now?
+@property (readonly) BOOL resizable; // Can the window be resized?
+@property BOOL miniaturized; // Is the window minimized right now?
+@property (readonly) BOOL miniaturizable; // Does the window have a minimize button?
+@property (readonly) BOOL closeable; // Does the window have a close button?
+@property NSRect bounds; // The bounding rectangle of the window.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (copy, readonly) NSString *name; // The title of the window.
+@interface NotesWindow : SBObject <NotesGenericMethods>
+// A window.
+@end
+@property (copy, readonly) NSURL *file; // Its location on disk, if it has one.
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface NotesDocument : SBObject <NotesGenericMethods>
+// A document.
+@end
+- (void) openNoteLocation:(NSString *)x; // Open a note URL.
+- (BOOL) exists:(id)x; // Verify that an object exists.
+- (void) quitSaving:(NotesSaveOptions)saving; // Quit the application.
+(BOOL)printDialog; // Print a document.
+- (void) print:(id)x withProperties:(NSDictionary *)withProperties printDialog:
+- (id) open:(id)x; // Open a document.
+@property (copy, readonly) NSString *version; // The version number of the application.
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+
+@property (readonly) BOOL shared; // Is the note shared?
+@property (readonly) BOOL passwordProtected; // Is the note password protected?
+note
+@property (copy, readonly) NSDate *modificationDate; // the modification date of the
+@property (copy, readonly) NSDate *creationDate; // the creation date of the note
+@property (copy, readonly) NSString *plaintext; // the plaintext content of the note
+@property (copy) NSString *body; // the HTML content of the note
+@property (copy, readonly) NotesFolder *container; // the folder of the note
+- (NSString *) id; // the unique identifier of the note
+body)
+@property (copy) NSString *name; // the name of the note (normally the first line of the
+- (SBElementArray<NotesAttachment *> *) attachments;
+@interface NotesNote : SBObject <NotesGenericMethods>
+// a note in the Notes application
+@end
+- (id) showSeparately:(BOOL)separately; // Show an object in the UI
+@property (copy, readonly) id container; // the container of the folder
+@property (readonly) BOOL shared; // Is the folder shared?
+- (NSString *) id; // the unique identifier of the folder
+@property (copy) NSString *name; // the name of the folder
+- (SBElementArray<NotesNote *> *) notes;
+- (SBElementArray<NotesFolder *> *) folders;
+@interface NotesFolder : SBObject <NotesGenericMethods>
+// a folder containing notes
+@end
+- (id) showSeparately:(BOOL)separately; // Show an object in the UI
+- (NSString *) id; // the unique identifier of the account
+@property (readonly) BOOL upgraded; // Is the account upgraded?
+@property (copy) NSString *name; // the name of the account
+@property (copy) NotesFolder *defaultFolder; // the default folder for creating notes
+- (SBElementArray<NotesNote *> *) notes;
+- (SBElementArray<NotesFolder *> *) folders;
+@interface NotesAccount : SBObject <NotesGenericMethods>
+// a Notes account
+@end
+@property (copy) NSArray<NotesNote *> *selection; // the selected note(s)
+@property (copy) NotesAccount *defaultAccount; // the default account for creating notes
+- (SBElementArray<NotesAttachment *> *) attachments;
+- (SBElementArray<NotesNote *> *) notes;
+
+@end
+- (id) showSeparately:(BOOL)separately; // Show an object in the UI
+@property (readonly) BOOL shared; // Is the attachment shared?
+represents
+@property (copy, readonly) NSString *URL; // for URL attachments, the URL the attachment
+attachment
+@property (copy, readonly) NSDate *modificationDate; // the modification date of the
+@property (copy, readonly) NSDate *creationDate; // the creation date of the attachment
+note's HTML
+@property (copy, readonly) NSString *contentIdentifier; // the content-id URL in the
+@property (copy, readonly) NotesNote *container; // the note containing the attachment
+- (NSString *) id; // the unique identifier of the attachment
+@property (copy, readonly) NSString *name; // the name of the attachment
+@interface NotesAttachment : SBObject <NotesGenericMethods>
+// an attachment in a note
+@end
+- (id) showSeparately:(BOOL)separately; // Show an object in the UI
+

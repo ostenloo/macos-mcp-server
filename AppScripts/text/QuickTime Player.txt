@@ -1,0 +1,163 @@
+- (SBElementArray<QuickTimePlayerWindow *> *) windows;
+- (SBElementArray<QuickTimePlayerDocument *> *) documents;
+@interface QuickTimePlayerApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+@end
+- (void) moveTo:(SBObject *)to; // Move an object to a new location.
+Copy an object.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties; //
+- (void) delete; // Delete an object.
+(BOOL)printDialog; // Print a document.
+- (void) printWithProperties:(NSDictionary *)withProperties printDialog:
+- (void) saveIn:(NSURL *)in_ as:(id)as; // Save a document.
+Close a document.
+- (void) closeSaving:(QuickTimePlayerSaveOptions)saving savingIn:(NSURL *)savingIn; //
+@protocol QuickTimePlayerGenericMethods
+typedef enum QuickTimePlayerPrintingErrorHandling QuickTimePlayerPrintingErrorHandling;
+};
+PostScript errors */
+QuickTimePlayerPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of
+handling */,
+QuickTimePlayerPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error
+enum QuickTimePlayerPrintingErrorHandling {
+typedef enum QuickTimePlayerSaveOptions QuickTimePlayerSaveOptions;
+};
+file. */
+QuickTimePlayerSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the
+QuickTimePlayerSaveOptionsNo = 'no ' /* Do not save the file. */,
+QuickTimePlayerSaveOptionsYes = 'yes ' /* Save the file. */,
+enum QuickTimePlayerSaveOptions {
+QuickTimePlayerScreenCompressionPreset;
+QuickTimePlayerAudioCompressionPreset, QuickTimePlayerMovieCompressionPreset,
+QuickTimePlayerVideoRecordingDevice, QuickTimePlayerAudioRecordingDevice,
+@class QuickTimePlayerApplication, QuickTimePlayerDocument, QuickTimePlayerWindow,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* QuickTimePlayer.h
+
+@property (readonly) BOOL zoomable; // Does the window have a zoom button?
+@property BOOL visible; // Is the window visible right now?
+@property (readonly) BOOL resizable; // Can the window be resized?
+@property BOOL miniaturized; // Is the window minimized right now?
+@property (readonly) BOOL miniaturizable; // Does the window have a minimize button?
+@property (readonly) BOOL closeable; // Does the window have a close button?
+@property NSRect bounds; // The bounding rectangle of the window.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (copy, readonly) NSString *name; // The title of the window.
+@interface QuickTimePlayerWindow : SBObject <QuickTimePlayerGenericMethods>
+// A window.
+@end
+Export a movie to another file
+- (void) exportIn:(NSURL *)in_ usingSettingsPreset:(NSString *)usingSettingsPreset; //
+- (void) present; // Present the document full screen.
+- (void) trimFrom:(double)from to:(double)to; // Trim the movie.
+steps (default is 1).
+- (void) stepForwardBy:(NSInteger)by; // Step the movie forward the specified number of
+of steps (default is 1).
+- (void) stepBackwardBy:(NSInteger)by; // Step the movie backward the specified number
+- (void) stop; // Stop the movie or recording.
+- (void) resume; // Resume the recording.
+- (void) pause; // Pause the recording.
+- (void) start; // Start the movie recording.
+- (void) play; // Play the movie.
+@property (copy, readonly) NSURL *file; // Its location on disk, if it has one.
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface QuickTimePlayerDocument : SBObject <QuickTimePlayerGenericMethods>
+// A document.
+@end
+document.
+- (void) newScreenRecording NS_RETURNS_NOT_RETAINED; // Create a new screen recording
+audio recording document.
+- (QuickTimePlayerDocument *) newAudioRecording NS_RETURNS_NOT_RETAINED; // Create a new
+movie recording document.
+- (QuickTimePlayerDocument *) newMovieRecording NS_RETURNS_NOT_RETAINED; // Create a new
+- (void) openURL:(NSString *)x; // Open a URL.
+- (BOOL) exists:(id)x; // Verify that an object exists.
+- (void) quitSaving:(QuickTimePlayerSaveOptions)saving; // Quit the application.
+(BOOL)printDialog; // Print a document.
+- (void) print:(id)x withProperties:(NSDictionary *)withProperties printDialog:
+- (id) open:(id)x; // Open a document.
+@property (copy, readonly) NSString *version; // The version number of the application.
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+
+<QuickTimePlayerGenericMethods>
+@interface QuickTimePlayerMovieCompressionPreset : SBObject
+// A movie recording compression preset
+@end
+- (NSString *) id; // The unique identifier of the preset.
+@property (copy, readonly) NSString *name; // The name of the preset.
+<QuickTimePlayerGenericMethods>
+@interface QuickTimePlayerAudioCompressionPreset : SBObject
+// An audio recording compression preset
+@end
+- (NSString *) id; // The unique identifier of the device.
+@property (copy, readonly) NSString *name; // The name of the device.
+@interface QuickTimePlayerAudioRecordingDevice : SBObject <QuickTimePlayerGenericMethods>
+// An audio recording device
+@end
+- (NSString *) id; // The unique identifier of the device.
+@property (copy, readonly) NSString *name; // The name of the device.
+@interface QuickTimePlayerVideoRecordingDevice : SBObject <QuickTimePlayerGenericMethods>
+// A video recording device
+*/
+/*
+* QuickTime Player Suite
+@end
+*/
+/*
+* Internet Suite
+@interface QuickTimePlayerApplication (InternetSuite)
+@end
+contents are displayed in the window.
+@property (copy, readonly) QuickTimePlayerDocument *document; // The document whose
+@property BOOL zoomed; // Is the window zoomed right now?
+
+@end
+The current screen compression preset.
+@property (copy) QuickTimePlayerScreenCompressionPreset *currentScreenCompression; //
+current movie compression preset.
+@property (copy) QuickTimePlayerMovieCompressionPreset *currentMovieCompression; // The
+current audio compression preset.
+@property (copy) QuickTimePlayerAudioCompressionPreset *currentAudioCompression; // The
+previewing video device.
+@property (copy) QuickTimePlayerVideoRecordingDevice *currentCamera; // The currently
+currently previewing audio device.
+@property (copy) QuickTimePlayerAudioRecordingDevice *currentMicrophone; // The
+@property BOOL presenting; // Is the movie presented in full screen?
+@property double rate; // The current rate of the movie.
+@property (readonly) BOOL playing; // Is the movie playing?
+@property (readonly) NSPoint naturalDimensions; // The natural dimensions of the movie.
+@property BOOL muted; // Is the movie muted?
+@property BOOL looping; // Is the movie playing in a loop?
+@property (readonly) double duration; // The duration of the movie in seconds.
+@property (readonly) NSInteger dataSize; // The data size of the movie in bytes.
+second.
+@property (readonly) NSInteger dataRate; // The data rate of the movie in bytes per
+@property double currentTime; // The current time of the movie in seconds.
+@property double audioVolume; // The volume of the movie from 0 to 1, where 1 is 100%.
+@interface QuickTimePlayerDocument (QuickTimePlayerSuite)
+@end
+- (SBElementArray<QuickTimePlayerScreenCompressionPreset *> *) screenCompressionPresets;
+- (SBElementArray<QuickTimePlayerMovieCompressionPreset *> *) movieCompressionPresets;
+- (SBElementArray<QuickTimePlayerAudioCompressionPreset *> *) audioCompressionPresets;
+- (SBElementArray<QuickTimePlayerAudioRecordingDevice *> *) audioRecordingDevices;
+- (SBElementArray<QuickTimePlayerVideoRecordingDevice *> *) videoRecordingDevices;
+@interface QuickTimePlayerApplication (QuickTimePlayerSuite)
+@end
+- (NSString *) id; // The unique identifier of the preset.
+@property (copy, readonly) NSString *name; // The name of the preset.
+<QuickTimePlayerGenericMethods>
+@interface QuickTimePlayerScreenCompressionPreset : SBObject
+// A screen recording compression preset
+@end
+- (NSString *) id; // The unique identifier of the preset.
+@property (copy, readonly) NSString *name; // The name of the preset.
+

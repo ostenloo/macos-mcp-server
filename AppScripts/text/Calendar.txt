@@ -1,0 +1,190 @@
+CalendarViewTypeWeekView = 'E5we' /* The iCal week view */,
+CalendarViewTypeDayView = 'E5da' /* The iCal day view */,
+enum CalendarViewType {
+typedef enum CalendarCalendarPriority CalendarCalendarPriority;
+};
+CalendarCalendarPriorityHighPriority = 'tdp1' /* High priority */
+CalendarCalendarPriorityMediumPriority = 'tdp5' /* Medium priority */,
+CalendarCalendarPriorityLowPriority = 'tdp9' /* Low priority */,
+CalendarCalendarPriorityNoPriority = 'tdp0' /* No priority */,
+enum CalendarCalendarPriority {
+typedef enum CalendarEventStatus CalendarEventStatus;
+};
+CalendarEventStatusTentative = 'E4te' /* A tentative event */
+CalendarEventStatusNone = 'E4no' /* An event without status */,
+CalendarEventStatusConfirmed = 'E4cn' /* A confirmed event */,
+CalendarEventStatusCancelled = 'E4ca' /* A cancelled event */,
+enum CalendarEventStatus {
+typedef enum CalendarParticipationStatus CalendarParticipationStatus;
+};
+accepted */
+CalendarParticipationStatusTentative = 'E6tp' /* Invitation has been tentatively
+CalendarParticipationStatusDeclined = 'E6dp' /* Invitation has been declined */,
+CalendarParticipationStatusAccepted = 'E6ap' /* Invitation has been accepted */,
+CalendarParticipationStatusUnknown = 'E6na' /* No anwser yet */,
+enum CalendarParticipationStatus {
+typedef enum CalendarPrintingErrorHandling CalendarPrintingErrorHandling;
+};
+PostScript errors */
+CalendarPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of
+*/,
+CalendarPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error handling
+enum CalendarPrintingErrorHandling {
+typedef enum CalendarSaveOptions CalendarSaveOptions;
+};
+CalendarSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file. */
+CalendarSaveOptionsNo = 'no ' /* Do not save the file. */,
+CalendarSaveOptionsYes = 'yes ' /* Save the file. */,
+enum CalendarSaveOptions {
+CalendarAttendee, CalendarEvent;
+CalendarDisplayAlarm, CalendarMailAlarm, CalendarSoundAlarm, CalendarOpenFileAlarm,
+@class CalendarApplication, CalendarDocument, CalendarWindow, CalendarCalendar,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* Calendar.h
+
+@property (copy, readonly) NSURL *file; // Its location on disk, if it has one.
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface CalendarDocument : SBObject <CalendarGenericMethods>
+// A document.
+@end
+http URL
+- (void) GetURL:(NSString *)x; // Subscribe to a remote calendar through a webcal or
+- (void) viewCalendarAt:(NSDate *)at; // Show calendar on the given date
+- (void) switchViewTo:(CalendarViewType)to; // Show calendar on the given view
+- (void) reloadCalendars; // Tell the application to reload all calendar files contents
+- (BOOL) exists:(id)x; // Verify that an object exists.
+- (void) quitSaving:(CalendarSaveOptions)saving; // Quit the application.
+(BOOL)printDialog; // Print a document.
+- (void) print:(id)x withProperties:(NSDictionary *)withProperties printDialog:
+- (id) open:(id)x; // Open a document.
+@property (copy, readonly) NSString *version; // The version number of the application.
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+- (SBElementArray<CalendarWindow *> *) windows;
+- (SBElementArray<CalendarDocument *> *) documents;
+@interface CalendarApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+@end
+- (void) show; // Show the event or to-do in the calendar window
+- (void) moveTo:(SBObject *)to; // Move an object to a new location.
+Copy an object.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties; //
+- (void) delete; // Delete an object.
+(BOOL)printDialog; // Print a document.
+- (void) printWithProperties:(NSDictionary *)withProperties printDialog:
+document.
+- (void) closeSaving:(CalendarSaveOptions)saving savingIn:(NSURL *)savingIn; // Close a
+@protocol CalendarGenericMethods
+typedef enum CalendarViewType CalendarViewType;
+};
+CalendarViewTypeMonthView = 'E5mo' /* The iCal month view */
+
+that trigger before).
+the alarm: (positive for alarm that trigger after the event date or negative for alarms
+@property NSInteger triggerInterval; // The interval in minutes between the event and
+@interface CalendarDisplayAlarm : SBObject <CalendarGenericMethods>
+// This class represents a message alarm.
+@end
+@property (copy) NSString *objectDescription; // This is the calendar description.
+@property (readonly) BOOL writable; // This is the calendar title.
+@property (copy, readonly) NSString *calendarIdentifier; // An unique calendar key
+@property (copy) NSColor *color; // The calendar color.
+@property (copy) NSString *name; // This is the calendar title.
+- (SBElementArray<CalendarEvent *> *) events;
+@interface CalendarCalendar : SBObject <CalendarGenericMethods>
+// This class represents a calendar.
+@end
+- (SBElementArray<CalendarCalendar *> *) calendars;
+@interface CalendarApplication (ICal)
+// This class represents iCal.
+*/
+* iCal
+/*
+@end
+are displayed in the window.
+@property (copy, readonly) CalendarDocument *document; // The document whose contents
+@property BOOL zoomed; // Is the window zoomed right now?
+@property (readonly) BOOL zoomable; // Does the window have a zoom button?
+@property BOOL visible; // Is the window visible right now?
+@property (readonly) BOOL resizable; // Can the window be resized?
+@property BOOL miniaturized; // Is the window minimized right now?
+@property (readonly) BOOL miniaturizable; // Does the window have a minimize button?
+@property (readonly) BOOL closeable; // Does the window have a close button?
+@property NSRect bounds; // The bounding rectangle of the window.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (copy, readonly) NSString *name; // The title of the window.
+@interface CalendarWindow : SBObject <CalendarGenericMethods>
+// A window.
+@end
+
+status for the attendee.
+@property (readonly) CalendarParticipationStatus participationStatus; // The invitation
+@property (copy, readonly) NSString *email; // e-mail of the attendee.
+attendee.
+@property (copy, readonly) NSString *displayName; // The first and last name of the
+@interface CalendarAttendee : SBObject <CalendarGenericMethods>
+// This class represents a attendee.
+@end
+@property (copy) NSString *filepath; // The (POSIX) path to be opened by the alarm
+@property (copy) NSDate *triggerDate; // An absolute alarm date.
+that trigger before).
+the alarm: (positive for alarm that trigger after the event date or negative for alarms
+@property NSInteger triggerInterval; // The interval in minutes between the event and
+@interface CalendarOpenFileAlarm : SBObject <CalendarGenericMethods>
+the alarm isn't modified.
+aspects of events or reminders that have existing open file alarms is allowed as long as
+Trying to save or modify an open file alarm will result in a save error. Editing other
+possible to create new open file alarms or view URLs for existing open file alarms.
+// This class represents an 'open file' alarm. Starting with OS X 10.14, it is not
+@end
+for the alarm
+@property (copy) NSString *soundFile; // The (POSIX) path to the sound file to be used
+@property (copy) NSString *soundName; // The system sound name to be used for the alarm
+@property (copy) NSDate *triggerDate; // An absolute alarm date.
+that trigger before).
+the alarm: (positive for alarm that trigger after the event date or negative for alarms
+@property NSInteger triggerInterval; // The interval in minutes between the event and
+@interface CalendarSoundAlarm : SBObject <CalendarGenericMethods>
+// This class represents a sound alarm.
+@end
+@property (copy) NSDate *triggerDate; // An absolute alarm date.
+that trigger before).
+the alarm: (positive for alarm that trigger after the event date or negative for alarms
+@property NSInteger triggerInterval; // The interval in minutes between the event and
+@interface CalendarMailAlarm : SBObject <CalendarGenericMethods>
+// This class represents a mail alarm.
+@end
+@property (copy) NSDate *triggerDate; // An absolute alarm date.
+
+@end
+@property (copy) NSString *url; // The URL associated to the event.
+@property (copy, readonly) NSString *uid; // An unique event key.
+@property (copy) NSString *location; // This is the event location.
+@property (copy) NSString *summary; // This is the event summary.
+@property CalendarEventStatus status; // The event status.
+@property (copy) NSArray<NSDate *> *excludedDates; // The exception dates.
+@property (copy) NSDate *stampDate; // The event modification date.
+@property (readonly) NSInteger sequence; // The event version.
+event recurrence, if defined
+@property (copy) NSString *recurrence; // The iCalendar (RFC 2445) string describing the
+@property BOOL alldayEvent; // True if the event is an all-day event
+@property (copy) NSDate *endDate; // The event end date.
+@property (copy) NSDate *startDate; // The event start date.
+@property (copy) NSString *objectDescription; // The events notes.
+- (SBElementArray<CalendarSoundAlarm *> *) soundAlarms;
+- (SBElementArray<CalendarOpenFileAlarm *> *) openFileAlarms;
+- (SBElementArray<CalendarMailAlarm *> *) mailAlarms;
+- (SBElementArray<CalendarDisplayAlarm *> *) displayAlarms;
+- (SBElementArray<CalendarAttendee *> *) attendees;
+@interface CalendarEvent : SBObject <CalendarGenericMethods>
+// This class represents an event.
+@end
+

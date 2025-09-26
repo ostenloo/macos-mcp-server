@@ -1,0 +1,100 @@
+// The top level scripting object for Photos.
+*/
+/*
+* Photos Suite
+@end
+Photos
+matching the search string. Identical to entering search text in the Search field in
+- (NSArray<PhotosMediaItem *> *) searchFor:(NSString *)for_; // search for items
+spotlight search results
+- (void) spotlight:(id)x; // Show the image at path in the application, used to show
+- (void) resumeSlideshow; // Resume the currently-playing slideshow.
+- (void) pauseSlideshow; // Pause the currently-playing slideshow.
+- (void) previousSlide; // Skip to previous slide in currently-playing slideshow.
+- (void) nextSlide; // Skip to next slide in currently-playing slideshow.
+- (void) stopSlideshow; // End the currently-playing slideshow.
+slide show from a list of media items, an album, or a folder.
+- (void) startSlideshowUsing:(NSArray<PhotosMediaItem *> *)using_; // Display an ad-hoc
+an album.
+- (void) add:(NSArray<PhotosMediaItem *> *)x to:(PhotosAlbum *)to; // Add media items to
+(BOOL)usingOriginals; // Export media items to the specified location as files
+- (void) export:(NSArray<PhotosMediaItem *> *)x to:(NSURL *)to usingOriginals:
+skipCheckDuplicates:(BOOL)skipCheckDuplicates; // Import files into the library
+- (NSArray<PhotosMediaItem *> *) import:(NSArray<NSURL *> *)x into:(PhotosAlbum *)into
+- (void) quit; // Quit the application.
+- (void) open:(NSURL *)x; // Open a photo library
+- (BOOL) exists:(id)x; // Verify that an object exists.
+@property (copy, readonly) NSString *version; // The version number of the application.
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+@interface PhotosApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+PhotosMoment;
+@class PhotosApplication, PhotosMediaItem, PhotosContainer, PhotosAlbum, PhotosFolder,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* Photos.h
+
+@end
+search results
+- (void) spotlight; // Show the image at path in the application, used to show spotlight
+any.
+@property (copy, readonly) PhotosFolder *parent; // This container's parent folder, if
+@property (copy) NSString *name; // The name of this container.
+- (NSString *) id; // The unique ID of this container.
+@interface PhotosContainer : SBObject
+// Base class for collections that contains other items, such as albums and folders
+@end
+search results
+- (void) spotlight; // Show the image at path in the application, used to show spotlight
+duplicated
+- (PhotosMediaItem *) duplicate; // Duplicate an object. Only media items can be
+180.0.
+numbers or missing values. Latitude in range -90.0 to 90.0, longitude in range -180.0 to
+@property (copy) id location; // The GPS latitude and longitude, in an ordered list of 2
+@property NSInteger size; // The selected media item file size.
+@property (readonly) double altitude; // The GPS altitude in meters.
+@property (copy, readonly) NSString *filename; // The name of the file on disk.
+@property (readonly) NSInteger width; // The width of the media item in pixels.
+@property (readonly) NSInteger height; // The height of the media item in pixels.
+- (NSString *) id; // The unique ID of the media item
+@property (copy) NSDate *date; // The date of the media item
+@property BOOL favorite; // Whether the media item has been favorited.
+@property (copy) NSString *objectDescription; // A description of the media item.
+@property (copy) NSString *name; // The name (title) of the media item.
+a media item
+@property (copy) NSArray<NSString *> *keywords; // A list of keywords to associate with
+@interface PhotosMediaItem : SBObject
+// A media item, such as a photo or video.
+@end
+deleted media items
+@property (copy, readonly) PhotosAlbum *recentlyDeletedAlbum; // The set of recently
+running.
+@property (readonly) BOOL slideshowRunning; // Returns true if a slideshow is currently
+@property (copy, readonly) PhotosAlbum *favoritesAlbum; // Favorited media items album.
+selected media items in the application
+@property (copy, readonly) NSArray<PhotosMediaItem *> *selection; // The currently
+- (SBElementArray<PhotosMediaItem *> *) mediaItems;
+- (SBElementArray<PhotosFolder *> *) folders;
+- (SBElementArray<PhotosAlbum *> *) albums;
+- (SBElementArray<PhotosContainer *> *) containers;
+@interface PhotosApplication (PhotosSuite)
+
+@end
+- (void) delete; // Delete an object. Only albums and folders can be deleted.
+- (SBElementArray<PhotosFolder *> *) folders;
+- (SBElementArray<PhotosAlbum *> *) albums;
+- (SBElementArray<PhotosContainer *> *) containers;
+@interface PhotosFolder : PhotosContainer
+// A folder. A container that holds albums and other folders, but not media items
+@end
+- (void) delete; // Delete an object. Only albums and folders can be deleted.
+- (SBElementArray<PhotosMediaItem *> *) mediaItems;
+@interface PhotosAlbum : PhotosContainer
+// An album. A container that holds media items
+

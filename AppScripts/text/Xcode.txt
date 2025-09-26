@@ -1,0 +1,294 @@
+withEnvironmentVariables:(id)withEnvironmentVariables; // Invoke the "run" scheme
+- (XcodeSchemeActionResult *) runWithCommandLineArguments:(id)withCommandLineArguments
+be sent to a workspace document. This command does not wait for the action to stop.
+- (void) stop; // Stop the active scheme action, if one is running. This command should
+result.
+for the action to complete; its progress can be tracked with the returned scheme action
+document's current active scheme and active run destination. This command does not wait
+should be sent to a workspace document. The clean will be performed using the workspace
+- (XcodeSchemeActionResult *) clean; // Invoke the "clean" scheme action. This command
+result.
+for the action to complete; its progress can be tracked with the returned scheme action
+document's current active scheme and active run destination. This command does not wait
+should be sent to a workspace document. The build will be performed using the workspace
+- (XcodeSchemeActionResult *) build; // Invoke the "build" scheme action. This command
+- (void) moveTo:(SBObject *)to; // Move an object to a new location.
+- (void) delete; // Delete an object.
+document.
+- (void) closeSaving:(XcodeSaveOptions)saving savingIn:(NSURL *)savingIn; // Close a
+@protocol XcodeGenericMethods
+typedef enum XcodeSchemeActionResultStatus XcodeSchemeActionResultStatus;
+};
+XcodeSchemeActionResultStatusSucceeded = 'srss' /* The action succeeded. */
+due to an error. */,
+XcodeSchemeActionResultStatusErrorOccurred = 'srse' /* The action was not able to run
+successfully. */,
+XcodeSchemeActionResultStatusFailed = 'srsf' /* The action ran but did not complete
+XcodeSchemeActionResultStatusCancelled = 'srsc' /* The action was cancelled. */,
+XcodeSchemeActionResultStatusRunning = 'srsr' /* The action is in progress. */,
+started. */,
+XcodeSchemeActionResultStatusNotYetStarted = 'srsn' /* The action has not yet
+enum XcodeSchemeActionResultStatus {
+// The status of a scheme action result object.
+typedef enum XcodeSaveOptions XcodeSaveOptions;
+};
+XcodeSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file. */
+XcodeSaveOptionsNo = 'no ' /* Do not save the file. */,
+XcodeSaveOptionsYes = 'yes ' /* Save the file. */,
+enum XcodeSaveOptions {
+XcodeProject, XcodeBuildSetting, XcodeResolvedBuildSetting, XcodeTarget;
+XcodeTestFailure, XcodeScheme, XcodeRunDestination, XcodeDevice, XcodeBuildConfiguration,
+XcodeSchemeActionIssue, XcodeBuildError, XcodeBuildWarning, XcodeAnalyzerIssue,
+XcodeTextDocument, XcodeSourceDocument, XcodeWorkspaceDocument, XcodeSchemeActionResult,
+@class XcodeApplication, XcodeDocument, XcodeWindow, XcodeFileDocument,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+* Xcode.h
+/*
+
+@property (copy, readonly) NSURL *file; // Its location on disk, if it has one.
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface XcodeDocument : SBObject <XcodeGenericMethods>
+// A document.
+@end
+temporary debugging workspace.
+- (XcodeWorkspaceDocument *) createTemporaryDebuggingWorkspace; // Create a new
+- (BOOL) exists:(id)x; // Verify that an object exists.
+- (void) quitSaving:(XcodeSaveOptions)saving; // Quit the application.
+- (id) open:(id)x; // Open a document.
+@property (copy, readonly) NSString *version; // The version number of the application.
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+- (SBElementArray<XcodeWindow *> *) windows;
+- (SBElementArray<XcodeDocument *> *) documents;
+@interface XcodeApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+@end
+action to complete; its progress can be tracked with the returned scheme action result.
+specified, the active run destination will be used. This command does not wait for the
+performed using the workspace document's current active scheme. If no run destination is
+should be sent to a workspace document. If no scheme is specified, the action will be
+debugging session using the "run" or "run without building" scheme action. This command
+(id)commandLineArguments environmentVariables:(id)environmentVariables; // Start a
+(NSString *)runDestinationSpecifier skipBuilding:(BOOL)skipBuilding commandLineArguments:
+- (XcodeSchemeActionResult *) debugScheme:(NSString *)scheme runDestinationSpecifier:
+be sent to a workspace document. This command does not wait for the action to complete.
+(BOOL)suspended; // Start a new debugging session in the workspace. This command should
+- (void) attachToProcessIdentifier:(NSInteger)toProcessIdentifier suspended:
+tracked with the returned scheme action result.
+destination. This command does not wait for the action to complete; its progress can be
+performed using the workspace document's current active scheme and active run
+action. This command should be sent to a workspace document. The test action will be
+withEnvironmentVariables:(id)withEnvironmentVariables; // Invoke the "test" scheme
+- (XcodeSchemeActionResult *) testWithCommandLineArguments:(id)withCommandLineArguments
+tracked with the returned scheme action result.
+destination. This command does not wait for the action to complete; its progress can be
+performed using the workspace document's current active scheme and active run
+action. This command should be sent to a workspace document. The run action will be
+
+// A document that represents a file on disk. It also provides access to the window it
+@end
+@property (copy) NSString *path; // The document's path.
+@interface XcodeDocument (XcodeDocumentSuite)
+// An Xcode-compatible document.
+*/
+/*
+* Xcode Document Suite
+@end
+workspace document in Xcode.
+@property (copy) XcodeWorkspaceDocument *activeWorkspaceDocument; // The active
+- (SBElementArray<XcodeWorkspaceDocument *> *) workspaceDocuments;
+- (SBElementArray<XcodeSourceDocument *> *) sourceDocuments;
+- (SBElementArray<XcodeFileDocument *> *) fileDocuments;
+@interface XcodeApplication (XcodeApplicationSuite)
+// The Xcode application.
+*/
+/*
+* Xcode Application Suite
+@end
+displayed in the window.
+@property (copy, readonly) XcodeDocument *document; // The document whose contents are
+@property BOOL zoomed; // Is the window zoomed right now?
+@property (readonly) BOOL zoomable; // Does the window have a zoom button?
+@property BOOL visible; // Is the window visible right now?
+@property (readonly) BOOL resizable; // Can the window be resized?
+@property BOOL miniaturized; // Is the window minimized right now?
+@property (readonly) BOOL miniaturizable; // Does the window have a minimize button?
+@property (readonly) BOOL closeable; // Does the window have a close button?
+@property NSRect bounds; // The bounding rectangle of the window.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (copy, readonly) NSString *name; // The title of the window.
+@interface XcodeWindow : SBObject <XcodeGenericMethods>
+// A window.
+@end
+
+* Xcode Scheme Suite
+/*
+@end
+it has one.
+@property (copy, readonly) NSURL *file; // The workspace document's location on disk, if
+result for the last scheme action command issued to the workspace document.
+@property (copy) XcodeSchemeActionResult *lastSchemeActionResult; // The scheme action
+destination that will be used for scheme actions.
+@property (copy) XcodeRunDestination *activeRunDestination; // The workspace's run
+for scheme actions.
+@property (copy) XcodeScheme *activeScheme; // The workspace's scheme that will be used
+errors.
+being opened. Messages sent to a workspace document before it has loaded will result in
+@property BOOL loaded; // Whether the workspace document has finsished loading after
+- (SBElementArray<XcodeRunDestination *> *) runDestinations;
+- (SBElementArray<XcodeScheme *> *) schemes;
+- (SBElementArray<XcodeProject *> *) projects;
+@interface XcodeWorkspaceDocument : XcodeDocument
+for almost all objects and commands in Xcode.
+// A document that represents a workspace on disk. Workspaces are the top-level container
+@end
+@interface XcodeSourceDocument : XcodeTextDocument
+window it appears in.
+// A document that represents a source file on disk. It also provides access to the
+@end
+is closed?
+@property BOOL notifiesWhenClosing; // Should Xcode notify other apps when this document
+@property (copy) NSString *text; // The text of the text file referenced.
+paragraph positions that contain the selection.
+@property (copy) NSArray<NSNumber *> *selectedParagraphRange; // The first and last
+character positions in the selection.
+@property (copy) NSArray<NSNumber *> *selectedCharacterRange; // The first and last
+@interface XcodeTextDocument : XcodeFileDocument
+it appears in.
+// A document that represents a text file on disk. It also provides access to the window
+@end
+@interface XcodeFileDocument : XcodeDocument
+appears in.
+
+@interface XcodeBuildWarning : XcodeSchemeActionIssue
+// A warning generated by a build.
+@end
+@interface XcodeBuildError : XcodeSchemeActionIssue
+// An error generated by a build.
+@end
+specific source file.
+the issue occurred. This may be 'missing value' if the issue is not associated with a
+@property NSInteger endingColumnNumber; // The ending column number in the file where
+a specific source file.
+where the issue occurred. This may be 'missing value' if the issue is not associated with
+@property NSInteger startingColumnNumber; // The starting column number in the file
+specific source file.
+issue occurred. This may be 'missing value' if the issue is not associated with a
+@property NSInteger endingLineNumber; // The ending line number in the file where the
+specific source file.
+the issue occurred. This may be 'missing value' if the issue is not associated with a
+@property NSInteger startingLineNumber; // The starting line number in the file where
+be 'missing value' if the issue is not associated with a specific source file.
+@property (copy) NSString *filePath; // The file path where the issue occurred. This may
+@property (copy) NSString *message; // The text of the issue.
+@interface XcodeSchemeActionIssue : SBObject <XcodeGenericMethods>
+// An issue (like an error or warning) generated by a scheme action.
+@end
+will be the text of the build log.
+@property (copy) NSString *buildLog; // If this scheme action performed a build, this
+this will be the error message; otherwise, this will be "missing value".
+@property (copy) NSString *errorMessage; // If the result's status is "error occurred",
+action.
+@property XcodeSchemeActionResultStatus status; // Indicates the status of the scheme
+(sucessfully or otherwise) or not.
+@property (readonly) BOOL completed; // Whether this scheme action has completed
+- (NSString *) id; // The unique identifier for the scheme.
+- (SBElementArray<XcodeTestFailure *> *) testFailures;
+- (SBElementArray<XcodeAnalyzerIssue *> *) analyzerIssues;
+- (SBElementArray<XcodeBuildWarning *> *) buildWarnings;
+- (SBElementArray<XcodeBuildError *> *) buildErrors;
+@interface XcodeSchemeActionResult : SBObject <XcodeGenericMethods>
+// An object describing the result of performing a scheme action command.
+*/
+
+@property (readonly) BOOL generic; // Whether this run destination is generic instead of
+Air") which this run destination targets.
+@property (copy, readonly) NSString *deviceModel; // The model of device (e.g. "iPad
+operating system installed on the device which this run destination targets.
+@property (copy, readonly) NSString *operatingSystemVersion; // The version of the
+device, as shown in Xcode's "Devices" window.
+@property (copy, readonly) NSString *deviceIdentifier; // A stable identifier for the
+@property (copy, readonly) NSString *name; // The name of the device.
+@interface XcodeDevice : SBObject <XcodeGenericMethods>
+destination.
+// A device which can be used as the target for a scheme action, as part of a run
+@end
+device.
+device has a companion (e.g. a paired watch for a phone) which it will use, this is that
+@property (copy, readonly) XcodeDevice *companionDevice; // If the run destination's
+this run destination targets.
+@property (copy, readonly) XcodeDevice *device; // The physical or virtual device which
+this run destination targets, such as "macosx", "iphoneos", "iphonesimulator", etc .
+@property (copy, readonly) NSString *platform; // The identifier of the platform which
+run destination results in execution.
+@property (copy, readonly) NSString *architecture; // The architecture for which this
+displayed in Xcode's interface.
+@property (copy, readonly) NSString *name; // The name of the run destination, as
+@interface XcodeRunDestination : SBObject <XcodeGenericMethods>
+perform a scheme action.
+// An object which specifies parameters such as the device and architecture for which to
+@end
+- (NSString *) id; // The unique identifier for the scheme.
+@property (copy, readonly) NSString *name; // The name of the scheme.
+@interface XcodeScheme : SBObject <XcodeGenericMethods>
+workspace.
+// A set of parameters for building, testing, launching or distributing the products of a
+@end
+@interface XcodeTestFailure : XcodeSchemeActionIssue
+// A failure from a test.
+@end
+@interface XcodeAnalyzerIssue : XcodeSchemeActionIssue
+// A warning generated by the static analyzer.
+@end
+
+@property (copy) NSString *value; // A string value for the build setting.
+@property (copy) NSString *name; // The unlocalized build setting name (e.g. DSTROOT).
+@interface XcodeResolvedBuildSetting : SBObject <XcodeGenericMethods>
+// An object that represents a resolved value for a build setting.
+@end
+@property (copy) NSString *value; // A string value for the build setting.
+@property (copy) NSString *name; // The unlocalized build setting name (e.g. DSTROOT).
+@interface XcodeBuildSetting : SBObject <XcodeGenericMethods>
+// A setting that controls how products are built.
+@end
+- (NSString *) id; // The unique identifier for the project.
+@property (copy, readonly) NSString *name; // The name of the project
+- (SBElementArray<XcodeTarget *> *) targets;
+- (SBElementArray<XcodeBuildConfiguration *> *) buildConfigurations;
+@interface XcodeProject : SBObject <XcodeGenericMethods>
+context of a workspace document.
+// An Xcode project. Projects represent project files on disk and are always open in the
+@end
+@property (copy, readonly) NSString *name; // The name of the build configuration.
+- (NSString *) id; // The unique identifier for the build configuration.
+- (SBElementArray<XcodeResolvedBuildSetting *> *) resolvedBuildSettings;
+- (SBElementArray<XcodeBuildSetting *> *) buildSettings;
+@interface XcodeBuildConfiguration : SBObject <XcodeGenericMethods>
+named build configurations as the project.
+// A set of build settings for a target or project. Each target in a project has the same
+*/
+/*
+* Xcode Project Suite
+@end
+physical devices are connected.
+destination (such as "Any iOS Device") will be available for some platforms if no
+representing a specific device. Most destinations are not generic, but a generic
+
+@end
+target
+@property (copy, readonly) XcodeProject *project; // The project that contains this
+- (NSString *) id; // The unique identifier for the target.
+@property (copy) NSString *name; // The name of this target.
+- (SBElementArray<XcodeBuildConfiguration *> *) buildConfigurations;
+@interface XcodeTarget : SBObject <XcodeGenericMethods>
+their project if not overridden in the target.
+// A target is a blueprint for building a product. Targets inherit build settings from
+@end
+

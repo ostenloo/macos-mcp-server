@@ -1,0 +1,99 @@
+@property (copy, readonly) NSString *version; // The version number of the application.
+@property (readonly) BOOL frontmost; // Is this the active application?
+@property (copy, readonly) NSString *name; // The name of the application.
+- (SBElementArray<ShortcutsWindow *> *) windows;
+- (SBElementArray<ShortcutsDocument *> *) documents;
+@interface ShortcutsApplication : SBApplication
+// The application's top-level scripting object.
+*/
+/*
+* Standard Suite
+@end
+- (void) moveTo:(SBObject *)to; // Move an object to a new location.
+Copy an object.
+- (void) duplicateTo:(SBObject *)to withProperties:(NSDictionary *)withProperties; //
+- (void) delete; // Delete an object.
+(BOOL)printDialog; // Print a document.
+- (void) printWithProperties:(NSDictionary *)withProperties printDialog:
+- (void) saveIn:(NSURL *)in_ as:(id)as; // Save a document.
+document.
+- (void) closeSaving:(ShortcutsSaveOptions)saving savingIn:(NSURL *)savingIn; // Close a
+@protocol ShortcutsGenericMethods
+typedef enum ShortcutsPrintingErrorHandling ShortcutsPrintingErrorHandling;
+};
+PostScript errors */
+ShortcutsPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of
+*/,
+ShortcutsPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error handling
+enum ShortcutsPrintingErrorHandling {
+typedef enum ShortcutsSaveOptions ShortcutsSaveOptions;
+};
+ShortcutsSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file. */
+ShortcutsSaveOptionsNo = 'no ' /* Do not save the file. */,
+ShortcutsSaveOptionsYes = 'yes ' /* Save the file. */,
+enum ShortcutsSaveOptions {
+ShortcutsFolder;
+@class ShortcutsApplication, ShortcutsDocument, ShortcutsWindow, ShortcutsShortcut,
+#import <ScriptingBridge/ScriptingBridge.h>
+#import <AppKit/AppKit.h>
+*/
+/*
+* Shortcuts.h
+
+@interface ShortcutsShortcut : SBObject <ShortcutsGenericMethods>
+// a shortcut in the Shortcuts application
+@end
+- (SBElementArray<ShortcutsFolder *> *) folders;
+- (SBElementArray<ShortcutsShortcut *> *) shortcuts;
+@interface ShortcutsApplication (ShortcutsSuite)
+*/
+/*
+* Shortcuts Suite
+@end
+are displayed in the window.
+@property (copy, readonly) ShortcutsDocument *document; // The document whose contents
+@property BOOL zoomed; // Is the window zoomed right now?
+@property (readonly) BOOL zoomable; // Does the window have a zoom button?
+@property BOOL visible; // Is the window visible right now?
+@property (readonly) BOOL resizable; // Can the window be resized?
+@property BOOL miniaturized; // Is the window minimized right now?
+@property (readonly) BOOL miniaturizable; // Does the window have a minimize button?
+@property (readonly) BOOL closeable; // Does the window have a close button?
+@property NSRect bounds; // The bounding rectangle of the window.
+@property NSInteger index; // The index of the window, ordered front to back.
+- (NSInteger) id; // The unique identifier of the window.
+@property (copy, readonly) NSString *name; // The title of the window.
+@interface ShortcutsWindow : SBObject <ShortcutsGenericMethods>
+// A window.
+@end
+@property (copy, readonly) NSURL *file; // Its location on disk, if it has one.
+@property (readonly) BOOL modified; // Has it been modified since the last save?
+@property (copy, readonly) NSString *name; // Its name.
+@interface ShortcutsDocument : SBObject <ShortcutsGenericMethods>
+// A document.
+@end
+- (BOOL) exists:(id)x; // Verify that an object exists.
+- (void) quitSaving:(ShortcutsSaveOptions)saving; // Quit the application.
+(BOOL)printDialog; // Print a document.
+- (void) print:(id)x withProperties:(NSDictionary *)withProperties printDialog:
+- (id) open:(id)x; // Open a document.
+
+@end
+- (NSString *) id; // the unique identifier of the folder
+@property (copy) NSString *name; // the name of the folder
+- (SBElementArray<ShortcutsShortcut *> *) shortcuts;
+@interface ShortcutsFolder : SBObject <ShortcutsGenericMethods>
+// a folder containing shortcuts
+@end
+'Shortcuts'.
+background, without opening the Shortcuts app, tell 'Shortcuts Events' instead of
+- (id) runWithInput:(id)withInput; // Run a shortcut. To run a shortcut in the
+@property (readonly) NSInteger actionCount; // the number of actions in the shortcut
+input data
+@property (readonly) BOOL acceptsInput; // indicates whether or not the shortcut accepts
+@property (copy, readonly) NSColor *color; // the shortcut's color
+@property (copy) ShortcutsFolder *folder; // the folder containing this shortcut
+- (NSString *) id; // the unique identifier of the shortcut
+@property (copy, readonly) NSString *subtitle; // the shortcut's subtitle
+@property (copy, readonly) NSString *name; // the name of the shortcut
+
