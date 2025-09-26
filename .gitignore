@@ -5,3 +5,9 @@ server/data/
 Cargo.lock
 **/target/
 .DS_Store
+
+# Ignore AppScripts directory
+AppScripts/
+
+# Ignore tools directory
+tools/
