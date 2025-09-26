@@ -1,1 +1,0 @@
-/Users/austinliu/macos-mcp-server/rust-mcp-client/target/debug/rust-mcp-client: /Users/austinliu/macos-mcp-server/rust-mcp-client/src/client.rs /Users/austinliu/macos-mcp-server/rust-mcp-client/src/lib.rs /Users/austinliu/macos-mcp-server/rust-mcp-client/src/main.rs

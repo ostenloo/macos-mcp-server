@@ -1,1 +1,0 @@
-/Users/austinliu/macos-mcp-server/mcp-client/target/debug/mcp-client: /Users/austinliu/macos-mcp-server/mcp-client/src/client.rs /Users/austinliu/macos-mcp-server/mcp-client/src/lib.rs /Users/austinliu/macos-mcp-server/mcp-client/src/main.rs
