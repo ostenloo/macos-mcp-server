@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { OpenAI } from 'openai';
 import { spawn } from 'child_process';
 import { appendConversation, listConversations } from './storage.js';
 
@@ -22,10 +21,26 @@ app.get('/api/conversations', async (_req, res) => {
 });
 
 app.post('/api/run', async (req, res) => {
-  const { apiKey, serverPath, scriptsDir, model = 'gpt-4.1-mini', prompt, tool = 'app.finder' } = req.body || {};
+  const {
+    apiKey,
+    clientPath,
+    serverPath,
+    scriptsDir,
+    model = 'gpt-4.1-mini',
+    prompt,
+  } = req.body || {};
 
   if (!apiKey || !apiKey.trim()) {
     return res.status(400).json({ error: 'OpenAI API key is required' });
+  }
+  if (!clientPath || !clientPath.trim()) {
+    return res.status(400).json({ error: 'Path to the MCP client binary is required' });
+  }
+  if (!serverPath || !serverPath.trim()) {
+    return res.status(400).json({ error: 'Path to the MCP server binary is required' });
+  }
+  if (!scriptsDir || !scriptsDir.trim()) {
+    return res.status(400).json({ error: 'AppleScript export directory is required' });
   }
   if (!prompt || !prompt.trim()) {
     return res.status(400).json({ error: 'Prompt is required' });
@@ -41,39 +56,99 @@ app.post('/api/run', async (req, res) => {
     res.write(JSON.stringify(entry) + '\n');
   }
 
-  try {
-    const openai = new OpenAI({ apiKey });
-    writeEvent('status', { message: 'Generating AppleScript with OpenAI…' });
+  const stdoutLines = [];
+  const stderrLines = [];
 
-    const completion = await openai.chat.completions.create({
-      model,
-      messages: [
-        {
-          role: 'system',
-          content:
-            'You write short AppleScript bodies that can run inside a "tell application" block. Respond with AppleScript code only, no explanations.',
-        },
-        { role: 'user', content: prompt },
-      ],
+  function streamToEvents(stream, type, collector) {
+    stream.setEncoding('utf8');
+    let buffer = '';
+
+    const flush = () => {
+      if (!buffer) return;
+      const line = buffer.replace(/\r$/, '');
+      collector.push(line);
+      writeEvent(type, { line });
+      buffer = '';
+    };
+
+    stream.on('data', (chunk) => {
+      buffer += chunk;
+      let newlineIndex;
+      while ((newlineIndex = buffer.indexOf('\n')) !== -1) {
+        const line = buffer.slice(0, newlineIndex).replace(/\r$/, '');
+        buffer = buffer.slice(newlineIndex + 1);
+        collector.push(line);
+        writeEvent(type, { line });
+      }
     });
 
-    const choice = completion.choices?.[0]?.message?.content;
-    if (!choice) {
-      throw new Error('OpenAI response did not contain any content');
+    stream.on('end', flush);
+    stream.on('close', flush);
+  }
+
+  try {
+    writeEvent('status', { message: 'Launching MCP client…' });
+
+    const args = [
+      '--server-path',
+      serverPath,
+      '--scripts-dir',
+      scriptsDir,
+      '--model',
+      model,
+      '--prompt',
+      prompt,
+    ];
+
+    let child;
+    try {
+      child = spawn(clientPath, args, {
+        env: { ...process.env, OPENAI_API_KEY: apiKey },
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
+    } catch (err) {
+      throw new Error(`Failed to spawn MCP client: ${err.message}`);
     }
 
-    const script = choice.trim();
-    writeEvent('script', { script });
+    if (!child.stdout || !child.stderr) {
+      child.kill();
+      throw new Error('Failed to capture MCP client output streams');
+    }
 
-    writeEvent('status', { message: 'Launching MCP server…' });
-    const { responses, scriptResult } = await runMcpSession({ serverPath, scriptsDir, tool, script });
+    writeEvent('status', { message: `Running ${clientPath} ${args.join(' ')}` });
 
-    responses.forEach((response) => {
-      writeEvent('mcp', response);
+    streamToEvents(child.stdout, 'stdout', stdoutLines);
+    streamToEvents(child.stderr, 'stderr', stderrLines);
+
+    const exitInfo = await new Promise((resolve, reject) => {
+      child.on('error', reject);
+      child.on('close', (code, signal) => {
+        resolve({ code, signal });
+      });
     });
 
-    writeEvent('complete', { result: scriptResult });
-    await appendConversation({ prompt, script, responses, model, tool });
+    const exitMessage = exitInfo.signal
+      ? `MCP client terminated by signal ${exitInfo.signal}`
+      : `MCP client exited with code ${exitInfo.code ?? 0}`;
+    writeEvent('status', { message: exitMessage });
+
+    writeEvent('complete', {
+      exitCode: exitInfo.code ?? 0,
+      signal: exitInfo.signal || null,
+    });
+
+    await appendConversation({
+      prompt,
+      model,
+      clientPath,
+      serverPath,
+      scriptsDir,
+      exitCode: exitInfo.code ?? 0,
+      signal: exitInfo.signal || null,
+      stdout: stdoutLines,
+      stderr: stderrLines,
+      events,
+    });
   } catch (err) {
     console.error(err);
     writeEvent('error', { message: err.message });
@@ -81,115 +156,6 @@ app.post('/api/run', async (req, res) => {
     res.end();
   }
 });
-
-async function runMcpSession({ serverPath, scriptsDir, tool, script }) {
-  return new Promise((resolve, reject) => {
-    const child = spawn(serverPath, ['--transport', 'stdio', '--scripts-dir', scriptsDir], {
-      stdio: ['pipe', 'pipe', 'inherit'],
-    });
-
-    const responses = [];
-    let stdoutBuffer = Buffer.alloc(0);
-    let done = false;
-
-    function finish() {
-      if (done) return;
-      done = true;
-      child.stdout.off('data', onData);
-      child.stdin.end();
-      child.kill();
-      resolve({ responses, scriptResult: responses[responses.length - 1] || null });
-    }
-
-    child.on('error', (err) => reject(err));
-    child.on('exit', (code) => {
-      if (code !== 0) {
-        console.warn(`MCP server exited with code ${code}`);
-      }
-      finish();
-    });
-
-    function sendFrame(payload) {
-      const frame = JSON.stringify(payload);
-      const header = Buffer.from(`Content-Length: ${Buffer.byteLength(frame)}\r\n\r\n`);
-      child.stdin.write(header);
-      child.stdin.write(frame);
-    }
-
-    function readFrames(chunk) {
-      stdoutBuffer = Buffer.concat([stdoutBuffer, chunk]);
-      const frames = [];
-      while (true) {
-        const headerEnd = stdoutBuffer.indexOf('\r\n\r\n');
-        if (headerEnd === -1) break;
-        const header = stdoutBuffer.slice(0, headerEnd).toString('utf8');
-        const match = header.match(/Content-Length:\s*(\d+)/i);
-        if (!match) {
-          throw new Error('Missing Content-Length in MCP response');
-        }
-        const length = Number(match[1]);
-        const frameStart = headerEnd + 4;
-        const frameEnd = frameStart + length;
-        if (stdoutBuffer.length < frameEnd) break;
-        const body = stdoutBuffer.slice(frameStart, frameEnd).toString('utf8');
-        frames.push(body);
-        stdoutBuffer = stdoutBuffer.slice(frameEnd);
-      }
-      return frames;
-    }
-
-    const onData = (chunk) => {
-      try {
-        const frames = readFrames(chunk);
-        frames.forEach((body) => {
-          try {
-            const parsed = JSON.parse(body);
-            responses.push(parsed);
-            if (parsed.id === 2) {
-              finish();
-            }
-          } catch (err) {
-            console.error('Failed to parse MCP frame', err, body);
-          }
-        });
-      } catch (err) {
-        reject(err);
-      }
-    };
-
-    child.stdout.on('data', onData);
-
-    try {
-      sendFrame({
-        jsonrpc: '2.0',
-        id: 1,
-        method: 'initialize',
-        params: {
-          client: { name: 'mcp-client-ui', version: '0.1.0' },
-          protocol_version: '2024-10-30',
-        },
-      });
-
-      sendFrame({
-        jsonrpc: '2.0',
-        id: 2,
-        method: 'tools/call',
-        params: {
-          name: tool,
-          arguments: {
-            script,
-          },
-        },
-      });
-    } catch (err) {
-      child.kill();
-      reject(err);
-      return;
-    }
-
-    setTimeout(finish, 5000);
-  });
-}
 
 app.listen(PORT, () => {
   console.log(`MCP client server listening on http://localhost:${PORT}`);

@@ -1,13 +1,9 @@
-node_modules/
-dist/
-.env
-server/data/
-Cargo.lock
-**/target/
-.DS_Store
-
-# Ignore AppScripts directory
+# Ignore AppScripts directory and all its contents
 AppScripts/
+/AppScripts/
+AppScripts/*
 
-# Ignore tools directory
+# Ignore tools directory and all its contents
 tools/
+/tools/
+tools/*

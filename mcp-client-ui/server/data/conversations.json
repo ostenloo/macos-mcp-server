@@ -1,0 +1,54 @@
+[
+  {
+    "prompt": "Open up messages application and send a message to 9724801792 titled \"Hello, this is an MCP server test\"\n",
+    "model": "gpt-4.1-mini",
+    "clientPath": "/Users/austinliu/macos-mcp-server/mcp-client/target/debug/mcp-client",
+    "serverPath": "/Users/austinliu/macos-mcp-server/mcp-server/target/debug/mcp-server",
+    "scriptsDir": "../AppScripts",
+    "exitCode": 1,
+    "signal": null,
+    "stdout": [],
+    "stderr": [
+      "Error: Failed to spawn MCP server",
+      "",
+      "Caused by:",
+      "    No such file or directory (os error 2)"
+    ],
+    "events": [
+      {
+        "type": "status",
+        "message": "Launching MCP client…"
+      },
+      {
+        "type": "status",
+        "message": "Running /Users/austinliu/macos-mcp-server/mcp-client/target/debug/mcp-client --server-path /Users/austinliu/macos-mcp-server/mcp-server/target/debug/mcp-server --scripts-dir ../AppScripts --model gpt-4.1-mini --prompt Open up messages application and send a message to 9724801792 titled \"Hello, this is an MCP server test\"\n"
+      },
+      {
+        "type": "stderr",
+        "line": "Error: Failed to spawn MCP server"
+      },
+      {
+        "type": "stderr",
+        "line": ""
+      },
+      {
+        "type": "stderr",
+        "line": "Caused by:"
+      },
+      {
+        "type": "stderr",
+        "line": "    No such file or directory (os error 2)"
+      },
+      {
+        "type": "status",
+        "message": "MCP client exited with code 1"
+      },
+      {
+        "type": "complete",
+        "exitCode": 1,
+        "signal": null
+      }
+    ],
+    "timestamp": "2025-09-26T18:06:17.680Z"
+  }
+]
