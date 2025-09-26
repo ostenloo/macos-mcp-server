@@ -9,7 +9,8 @@ tools/
 tools/*
 
 # Ignore Rust build artifacts
-target/**
+target/
+**/target/
 
 # Ignore Node.js dependencies
 node_modules/
