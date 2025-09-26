@@ -7,3 +7,9 @@ AppScripts/*
 tools/
 /tools/
 tools/*
+
+# Ignore Rust build artifacts
+target/**
+
+# Ignore Node.js dependencies
+node_modules/
